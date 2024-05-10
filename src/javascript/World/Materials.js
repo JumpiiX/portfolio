@@ -30,12 +30,12 @@ export default class Materials
         // Setup
         this.pures = {}
         this.pures.items = {}
-        this.pures.items.red = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-        this.pures.items.red.name = 'pureRed'
-        this.pures.items.white = new THREE.MeshBasicMaterial({ color: 0xffffff })
+        this.pures.items.red = new THREE.MeshBasicMaterial({ color: 0xa64ca6 }) // Lila statt Rot
+        this.pures.items.red.name = 'pureLila'
+        this.pures.items.white = new THREE.MeshBasicMaterial({ color: 0xffffff }) // Weiß beibehalten
         this.pures.items.white.name = 'pureWhite'
-        this.pures.items.yellow = new THREE.MeshBasicMaterial({ color: 0xffe889 })
-        this.pures.items.yellow.name = 'pureYellow'
+        this.pures.items.yellow = new THREE.MeshBasicMaterial({ color: 0x7d61ff }) // Helles Lila statt Gelb
+        this.pures.items.yellow.name = 'pureLightLila'
     }
 
     setShades()
@@ -43,7 +43,7 @@ export default class Materials
         // Setup
         this.shades = {}
         this.shades.items = {}
-        this.shades.indirectColor = '#d04500'
+        this.shades.indirectColor = '#8968ff' // Mittleres Lila für indirekte Farbe
 
         this.shades.uniforms = {
             uRevealProgress: 0,

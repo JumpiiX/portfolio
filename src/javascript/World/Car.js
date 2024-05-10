@@ -47,26 +47,16 @@ export default class Car
         this.models = {}
 
         // Cyber truck
-        if(this.config.cyberTruck)
-        {
+
             this.models.chassis = this.resources.items.carCyberTruckChassis
             this.models.antena = this.resources.items.carCyberTruckAntena
             this.models.backLightsBrake = this.resources.items.carCyberTruckBackLightsBrake
             this.models.backLightsReverse = this.resources.items.carCyberTruckBackLightsReverse
             this.models.wheel = this.resources.items.carCyberTruckWheel
-        }
+
 
         // Default
-        else
-        {
-            this.models.chassis = this.resources.items.carDefaultChassis
-            this.models.antena = this.resources.items.carDefaultAntena
-            // this.models.bunnyEarLeft = this.resources.items.carDefaultBunnyEarLeft
-            // this.models.bunnyEarRight = this.resources.items.carDefaultBunnyEarRight
-            this.models.backLightsBrake = this.resources.items.carDefaultBackLightsBrake
-            this.models.backLightsReverse = this.resources.items.carDefaultBackLightsReverse
-            this.models.wheel = this.resources.items.carDefaultWheel
-        }
+
     }
 
     setMovement()
