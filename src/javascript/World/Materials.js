@@ -30,11 +30,11 @@ export default class Materials
         // Setup
         this.pures = {};
         this.pures.items = {};
-        this.pures.items.red = new THREE.MeshBasicMaterial({ color: 0xffff00 }); // Gelb statt Lila
+        this.pures.items.red = new THREE.MeshBasicMaterial({ color: 0xffff00 });
         this.pures.items.red.name = 'pureYellow';
-        this.pures.items.white = new THREE.MeshBasicMaterial({ color: 0xffffff }); // Weiß beibehalten
+        this.pures.items.white = new THREE.MeshBasicMaterial({ color: 0xffffff });
         this.pures.items.white.name = 'pureWhite';
-        this.pures.items.yellow = new THREE.MeshBasicMaterial({ color: 0xffff66 }); // Helles Gelb
+        this.pures.items.yellow = new THREE.MeshBasicMaterial({ color: 0xffff66 });
         this.pures.items.yellow.name = 'pureLightYellow';
     }
 
