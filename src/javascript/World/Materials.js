@@ -43,7 +43,7 @@ export default class Materials
         // Setup
         this.shades = {}
         this.shades.items = {}
-        this.shades.indirectColor = '#ffff00' // Mittleres Lila für indirekte Farbe
+        this.shades.indirectColor = '#ffff00'
 
         this.shades.uniforms = {
             uRevealProgress: 0,
@@ -133,12 +133,6 @@ export default class Materials
         this.shades.items.metal.name = 'shadeMetal'
         this.shades.items.metal.uniforms.matcap.value = this.resources.items.matcapMetalTexture
         this.items.metal = this.shades.items.metal
-
-        // // Gold
-        // this.shades.items.gold = new MatcapMaterial()
-        // this.shades.items.gold.name = 'shadeGold'
-        // this.shades.items.gold.uniforms.matcap.value = this.resources.items.matcapGoldTexture
-        // this.items.gold = this.shades.items.gold
 
         // Update materials uniforms
         this.shades.updateMaterials = () =>
