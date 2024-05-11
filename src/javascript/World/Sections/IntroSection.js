@@ -169,7 +169,7 @@ export default class IntroSection
             mass: 1.5,
             soundName: 'brick'
         })
-/*      this.objects.add({
+   this.objects.add({
             base: this.resources.items.introRBase.scene,
             collision: this.resources.items.introRCollision.scene,
             offset: new THREE.Vector3(0, 0, 0),
@@ -177,7 +177,7 @@ export default class IntroSection
             shadow: { sizeX: 1.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.4 },
             mass: 1.5,
             soundName: 'brick'
-        })*/
+        })
         this.objects.add({
             base: this.resources.items.introUBase.scene,
             collision: this.resources.items.introUCollision.scene,
