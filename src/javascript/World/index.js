@@ -10,14 +10,7 @@ import Areas from './Areas.js'
 import Tiles from './Tiles.js'
 import Walls from './Walls.js'
 import IntroSection from './Sections/IntroSection.js'
-import ProjectsSection from './Sections/ProjectsSection.js'
-import CrossroadsSection from './Sections/CrossroadsSection.js'
 import InformationSection from './Sections/InformationSection.js'
-import PlaygroundSection from './Sections/PlaygroundSection.js'
-// import DistinctionASection from './Sections/DistinctionASection.js'
-// import DistinctionBSection from './Sections/DistinctionBSection.js'
-// import DistinctionCSection from './Sections/DistinctionCSection.js'
-// import DistinctionDSection from './Sections/DistinctionDSection.js'
 import Controls from './Controls.js'
 import Sounds from './Sounds.js'
 import gsap from 'gsap'
@@ -372,10 +365,6 @@ export default class World
         })
         this.container.add(this.objects.container)
 
-        // window.requestAnimationFrame(() =>
-        // {
-        //     this.objects.merge.update()
-        // })
     }
 
     setCar()
@@ -416,38 +405,6 @@ export default class World
             debug: this.debugFolder
         }
 
-        // // Distinction A
-        // this.sections.distinctionA = new DistinctionASection({
-        //     ...options,
-        //     x: 0,
-        //     y: - 15
-        // })
-        // this.container.add(this.sections.distinctionA.container)
-
-        // // Distinction B
-        // this.sections.distinctionB = new DistinctionBSection({
-        //     ...options,
-        //     x: 0,
-        //     y: - 15
-        // })
-        // this.container.add(this.sections.distinctionB.container)
-
-        // // Distinction C
-        // this.sections.distinctionC = new DistinctionCSection({
-        //     ...options,
-        //     x: 0,
-        //     y: 0
-        // })
-        // this.container.add(this.sections.distinctionC.container)
-
-        // // Distinction D
-        // this.sections.distinctionD = new DistinctionDSection({
-        //     ...options,
-        //     x: 0,
-        //     y: 0
-        // })
-        // this.container.add(this.sections.distinctionD.container)
-
         // Intro
         this.sections.intro = new IntroSection({
             ...options,
@@ -456,23 +413,6 @@ export default class World
         })
         this.container.add(this.sections.intro.container)
 
-        /* Crossroads
-        this.sections.crossroads = new CrossroadsSection({
-            ...options,
-            x: 0,
-            y: - 30
-        })
-        this.container.add(this.sections.crossroads.container)
-*/
-        /* Projects
-        this.sections.projects = new ProjectsSection({
-            ...options,
-            x: 30,
-            y: - 30
-            // x: 0,
-            // y: 0
-        })
-        this.container.add(this.sections.projects.container)*/
 
         // Information
         this.sections.information = new InformationSection({
@@ -484,15 +424,6 @@ export default class World
         })
         this.container.add(this.sections.information.container)
 
-        /* Playground
-        this.sections.playground = new PlaygroundSection({
-            ...options,
-            x: 0,
-            y: 0
-            // x: - 15,
-            // y: - 4
-        })
-        this.container.add(this.sections.playground.container)*/
     }
 
     setEasterEggs()
