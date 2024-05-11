@@ -456,15 +456,15 @@ export default class World
         })
         this.container.add(this.sections.intro.container)
 
-        // Crossroads
+        /* Crossroads
         this.sections.crossroads = new CrossroadsSection({
             ...options,
             x: 0,
             y: - 30
         })
         this.container.add(this.sections.crossroads.container)
-
-        // Projects
+*/
+        /* Projects
         this.sections.projects = new ProjectsSection({
             ...options,
             x: 30,
@@ -472,27 +472,27 @@ export default class World
             // x: 0,
             // y: 0
         })
-        this.container.add(this.sections.projects.container)
+        this.container.add(this.sections.projects.container)*/
 
         // Information
         this.sections.information = new InformationSection({
             ...options,
             x: 1.2,
-            y: - 55
+            y: - 20
             // x: 0,
             // y: - 10
         })
         this.container.add(this.sections.information.container)
 
-        // Playground
+        /* Playground
         this.sections.playground = new PlaygroundSection({
             ...options,
-            x: - 38,
-            y: - 34
+            x: 0,
+            y: 0
             // x: - 15,
             // y: - 4
         })
-        this.container.add(this.sections.playground.container)
+        this.container.add(this.sections.playground.container)*/
     }
 
     setEasterEggs()
