@@ -35,7 +35,6 @@ export default class Application
         this.setPasses()
         this.setWorld()
         this.setTitle()
-        this.setThreejsJourney()
     }
 
     /**
@@ -264,18 +263,6 @@ export default class Application
 
             document.title = `${'_'.repeat(this.title.width - this.title.position)}🚗${'_'.repeat(this.title.position)}`
         }, this.title.frequency)
-    }
-
-    /**
-     * Set Three.js Journey
-     */
-    setThreejsJourney()
-    {
-        this.threejsJourney = new ThreejsJourney({
-            config: this.config,
-            time: this.time,
-            world: this.world
-        })
     }
 
     /**
