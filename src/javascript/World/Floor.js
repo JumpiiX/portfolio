@@ -15,12 +15,11 @@ export default class Floor
         // Geometry
         this.geometry = new THREE.PlaneGeometry(2, 2, 10, 10)
 
-        // Colors
-        this.colors = {}
-        this.colors.topLeft = '#5f43ff'
-        this.colors.topRight = '#7d61ff'
-        this.colors.bottomRight = '#a08aff'
-        this.colors.bottomLeft = '#8968ff'
+        this.colors = {};
+        this.colors.topLeft = '#2d2d2d';      // Dunkelgrau
+        this.colors.topRight = '#3d3d3d';     // Etwas helleres Grau
+        this.colors.bottomRight = '#1c1c1c';  // Fast Schwarz
+        this.colors.bottomLeft = '#111111';
 
         // Material
         this.material = new FloorMaterial()
