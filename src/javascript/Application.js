@@ -6,7 +6,6 @@ import Time from './Utils/Time.js'
 import World from './World/index.js'
 import Resources from './Resources.js'
 import Camera from './Camera.js'
-import ThreejsJourney from './ThreejsJourney.js'
 
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass.js'
