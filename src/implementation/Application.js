@@ -20,9 +20,7 @@ export default class Application
      */
     constructor(_options)
     {
-
         this.$canvas = _options.$canvas
-
         this.time = new Time()
         this.sizes = new Sizes()
         this.resources = new Resources()
