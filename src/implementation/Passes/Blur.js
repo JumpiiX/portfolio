@@ -8,6 +8,7 @@ export default {
         uResolution: { type: 'v2', value: null },
         uStrength: { type: 'v2', value: null }
     },
+
     vertexShader: shaderVertex,
     fragmentShader: shaderFragment
 }
