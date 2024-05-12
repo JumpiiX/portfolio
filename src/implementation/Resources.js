@@ -91,9 +91,6 @@ export default class Resources extends EventEmitter
             { name: 'tilesEBase', source: './models/tiles/e/base.glb' },
             { name: 'tilesECollision', source: './models/tiles/e/collision.glb' },
 
-            { name: 'konamiLabel', source: './models/konami/label.png', type: 'texture' },
-            { name: 'konamiLabelTouch', source: './models/konami/label-touch.png', type: 'texture' },
-
             { name: 'wig1', source: './models/wigs/wig1.glb' },
             { name: 'wig2', source: './models/wigs/wig2.glb' },
             { name: 'wig3', source: './models/wigs/wig3.glb' },
