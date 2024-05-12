@@ -46,7 +46,6 @@ export default class EasterEggs
         {
             this.konamiCode.labelTexture = this.resources.items.konamiLabelTexture
         }
-
         this.konamiCode.labelTexture.magFilter = THREE.NearestFilter
         this.konamiCode.labelTexture.minFilter = THREE.LinearFilter
         this.konamiCode.label = new THREE.Mesh(new THREE.PlaneGeometry(8, 8 / 16), new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, color: 0xffffff, alphaMap: this.konamiCode.labelTexture }))
