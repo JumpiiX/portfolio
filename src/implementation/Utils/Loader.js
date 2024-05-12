@@ -129,7 +129,6 @@ export default class Resources extends EventEmitter
     {
         this.loaded++
         this.items[_resource.name] = _data
-
         this.trigger('fileEnd', [_resource, _data])
 
         if(this.loaded === this.toLoad)
