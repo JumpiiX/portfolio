@@ -120,7 +120,6 @@ export default class Resources extends EventEmitter
         {
             this.items[_resource.name] = _data
 
-            // Texture
             if(_resource.type === 'texture')
             {
                 const texture = new THREE.Texture(_data)
@@ -129,13 +128,11 @@ export default class Resources extends EventEmitter
                 this.items[`${_resource.name}Texture`] = texture
             }
 
-            // Trigger progress
             this.trigger('progress', [this.loader.loaded / this.loader.toLoad])
         })
 
         this.loader.on('end', () =>
         {
-            // Trigger ready
             this.trigger('ready')
         })
     }
