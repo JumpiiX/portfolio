@@ -13,7 +13,7 @@ Welcome to my interactive portfolio! This site offers a unique experience where 
 This portfolio is built using the following technologies:
 
 - [Three.js](https://threejs.org/): For rendering the 3D scenes.
-- [Cannon.js](http://www.cannonjs.org/): For the physics engine that allows for realistic movement of the Cybertruck.
+- [Cannon.js](https://schteppe.github.io/cannon.js/): For the physics engine that allows for realistic movement of the Cybertruck.
 
 ## Credits
 
