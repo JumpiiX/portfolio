@@ -39,7 +39,6 @@ export default class World
 
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
-
         this.setSounds()
         this.setControls()
         this.setFloor()
