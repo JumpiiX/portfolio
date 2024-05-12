@@ -64,7 +64,6 @@ export default class Physics
     setMaterials()
     {
         this.materials = {}
-
         this.materials.items = {}
         this.materials.items.floor = new CANNON.Material('floorMaterial')
         this.materials.items.dummy = new CANNON.Material('dummyMaterial')
