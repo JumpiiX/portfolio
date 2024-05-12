@@ -97,7 +97,6 @@ export default class Camera
 
     setZoom()
     {
-
         this.zoom = {}
         this.zoom.easing = 0.1
         this.zoom.minDistance = 14
