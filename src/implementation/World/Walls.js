@@ -4,7 +4,6 @@ export default class Walls
 {
     constructor(_options)
     {
-
         this.resources = _options.resources
         this.objects = _options.objects
     }
