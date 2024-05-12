@@ -1,6 +1,6 @@
-import mobileDoubleTriangle from '../../images/mobile/doubleTriangle.png'
-import mobileTriangle from '../../images/mobile/triangle.png'
-import mobileCross from '../../images/mobile/cross.png'
+import mobileDoubleTriangle from '../../touchScreen/mobile/doubleTriangle.png'
+import mobileTriangle from '../../touchScreen/mobile/triangle.png'
+import mobileCross from '../../touchScreen/mobile/cross.png'
 import EventEmitter from '../Utils/EventEmitter.js'
 
 export default class Controls extends EventEmitter
