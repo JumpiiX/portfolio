@@ -123,10 +123,6 @@ export default class Car
         this.antena.object = this.objects.getConvertedMesh(this.models.antena.scene.children)
         this.chassis.object.add(this.antena.object)
 
-
-
-
-
         this.antena.speed = new THREE.Vector2()
         this.antena.absolutePosition = new THREE.Vector2()
         this.antena.localPosition = new THREE.Vector2()
