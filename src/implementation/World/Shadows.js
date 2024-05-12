@@ -113,7 +113,6 @@ export default class Shadows
         }
 
         this.sun.update()
-
         if(this.debug)
         {
             const folder = this.debugFolder.addFolder('sun')
