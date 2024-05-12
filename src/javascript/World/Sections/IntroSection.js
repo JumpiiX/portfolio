@@ -27,6 +27,7 @@ export default class IntroSection
         this.setTitles()
         this.setTiles()
         this.setDikes()
+        this.setName();
     }
 
     setStatic()
@@ -107,6 +108,39 @@ export default class IntroSection
                 soundName: 'brick'
             })
         }
+    }
+    setName() {
+        this.nameInstructions = {};
+        this.nameInstructions.container = new THREE.Object3D();
+
+            this.nameInstructions.container.position.x = 4;
+            this.nameInstructions.container.position.y = -8;
+
+
+        this.nameInstructions.container.matrixAutoUpdate = false;
+        this.nameInstructions.container.updateMatrix();
+        this.container.add(this.nameInstructions.container);
+
+        // Label
+        this.nameInstructions.label = {};
+
+        this.nameInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1); // Kleinere Geometrie als die Pfeile
+
+        this.nameInstructions.label.texture = this.resources.items.introNameTexture; // Verwendung des vorhandenen Textures
+        this.nameInstructions.label.texture.magFilter = THREE.NearestFilter;
+        this.nameInstructions.label.texture.minFilter = THREE.LinearFilter;
+
+        this.nameInstructions.label.material = new THREE.MeshBasicMaterial({
+            transparent: true,
+            alphaMap: this.nameInstructions.label.texture,
+            color: 0xffffff,
+            depthWrite: false,
+            opacity: 1 // Vollständig sichtbar
+        });
+
+        this.nameInstructions.label.mesh = new THREE.Mesh(this.nameInstructions.label.geometry, this.nameInstructions.label.material);
+        this.nameInstructions.label.mesh.matrixAutoUpdate = false;
+        this.nameInstructions.container.add(this.nameInstructions.label.mesh);
     }
 
     setOtherInstructions()
