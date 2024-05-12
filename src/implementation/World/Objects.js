@@ -196,7 +196,6 @@ export default class Objects
     {
         const container = new THREE.Object3D()
         const center = new THREE.Vector3()
-
         const baseChildren = [..._children]
 
         for(const _child of baseChildren)
