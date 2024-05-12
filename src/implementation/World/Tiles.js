@@ -102,7 +102,7 @@ export default class Tiles {
                 collision: model.collision,
                 offset: new THREE.Vector3(position.x, position.y, 0),
                 rotation: new THREE.Euler(0, 0, rotation),
-                material: new THREE.MeshStandardMaterial({ color: '#ff0000' }),
+                material: new THREE.MeshStandardMaterial({ color: '#ffffff' }),
                 duplicated: true,
                 mass: 0
             });
