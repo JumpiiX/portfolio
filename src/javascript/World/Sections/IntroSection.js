@@ -160,6 +160,15 @@ export default class IntroSection
     setTitles()
     {
         // Title
+        this.objects.add({
+            base: this.resources.items.introIBase.scene,
+            collision: this.resources.items.introICollision.scene,
+            offset: new THREE.Vector3(0, 0, 0),
+            rotation: new THREE.Euler(0, 0, 0),
+            shadow: { sizeX: 1.5, sizeY: 1.5, offsetZ: - 0.6, alpha: 0.4 },
+            mass: 1.5,
+            soundName: 'brick'
+        })
        this.objects.add({
             base: this.resources.items.introCreativeBase.scene,
             collision: this.resources.items.introCreativeCollision.scene,

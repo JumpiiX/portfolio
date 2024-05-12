@@ -30,6 +30,9 @@ export default class Resources extends EventEmitter
              { name: 'matcapGold', source: './models/matcaps/gold.png', type: 'texture' },
 
             // Intro
+
+            { name: 'introBBase', source: './models/intro/b/base.glb' },
+            { name: 'introBCollision', source: './models/intro/b/collision.glb' },
             { name: 'introStaticBase', source: './models/intro/static/base.glb' },
             { name: 'introStaticCollision', source: './models/intro/static/collision.glb' },
             { name: 'introStaticFloorShadow', source: './models/intro/static/floorShadow.png', type: 'texture' },
