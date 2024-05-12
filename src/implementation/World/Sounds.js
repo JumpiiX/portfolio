@@ -4,7 +4,6 @@ export default class Sounds
 {
     constructor(_options)
     {
-
         this.time = _options.time
         this.debug = _options.debug
 
