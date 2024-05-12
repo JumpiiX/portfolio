@@ -29,7 +29,6 @@ export default class Resources extends EventEmitter
             { name: 'matcapMetal', source: './models/matcaps/metal.png', type: 'texture' },
              { name: 'matcapGold', source: './models/matcaps/gold.png', type: 'texture' },
 
-
             { name: 'introStaticBase', source: './models/intro/static/base.glb' },
             { name: 'introStaticCollision', source: './models/intro/static/collision.glb' },
             { name: 'introStaticFloorShadow', source: './models/intro/static/floorShadow.png', type: 'texture' },
@@ -54,7 +53,6 @@ export default class Resources extends EventEmitter
             { name: 'carCyberTruckBackLightsBrake', source: './models/car/cyberTruck/backLightsBrake.glb' },
             { name: 'carCyberTruckBackLightsReverse', source: './models/car/cyberTruck/backLightsReverse.glb' },
             { name: 'carCyberTruckAntena', source: './models/car/cyberTruck/antena.glb' },
-
 
             { name: 'informationContactTwitterLabel', source: './models/information/static/contactTwitterLabel.png', type: 'texture' },
             { name: 'informationContactGithubLabel', source: './models/information/static/contactGithubLabel.png', type: 'texture' },
