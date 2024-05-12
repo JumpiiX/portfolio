@@ -85,8 +85,6 @@ export default class Controls extends EventEmitter
                     this.actions.boost = true
                     break
 
-
-
             }
         }
 
