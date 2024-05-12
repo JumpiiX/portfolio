@@ -41,7 +41,7 @@ export default class Materials
 
         this.shades = {}
         this.shades.items = {}
-        this.shades.indirectColor = '#ffff00'
+        this.shades.indirectColor = '#ffffff'
 
         this.shades.uniforms = {
             uRevealProgress: 0,
