@@ -67,7 +67,6 @@ export default class Area extends EventEmitter
     setFloorBorder()
     {
         this.floorBorder = {}
-
         this.floorBorder.geometry = new AreaFloorBorderGeometry(this.halfExtents.x * 2, this.halfExtents.y * 2, 0.25)
         this.floorBorder.material = new AreaFloorBordereMaterial()
         this.floorBorder.material.uniforms.uColor.value = new THREE.Color(0xffffff)
