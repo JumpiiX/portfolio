@@ -33,20 +33,17 @@ export default class Camera
 
     setAngle()
     {
-        // Set up
+
         this.angle = {}
 
-        // Items
         this.angle.items = {
             default: new THREE.Vector3(0, - 1.45, 1.15),
             projects: new THREE.Vector3(0.38, - 1.4, 1.63)
         }
 
-        // Value
         this.angle.value = new THREE.Vector3()
         this.angle.value.copy(this.angle.items.default)
 
-        // Set method
         this.angle.set = (_name) =>
         {
             const angle = this.angle.items[_name]
@@ -56,7 +53,6 @@ export default class Camera
             }
         }
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder.add(this, 'easing').step(0.0001).min(0).max(1).name('easing')
@@ -68,21 +64,19 @@ export default class Camera
 
     setInstance()
     {
-        // Set up
+
         this.instance = new THREE.PerspectiveCamera(40, this.sizes.viewport.width / this.sizes.viewport.height, 1, 80)
         this.instance.up.set(0, 0, 1)
         this.instance.position.copy(this.angle.value)
         this.instance.lookAt(new THREE.Vector3())
         this.container.add(this.instance)
 
-        // Resize event
         this.sizes.on('resize', () =>
         {
             this.instance.aspect = this.sizes.viewport.width / this.sizes.viewport.height
             this.instance.updateProjectionMatrix()
         })
 
-        // Time tick
         this.time.on('tick', () =>
         {
             if(!this.orbitControls.enabled)
@@ -103,7 +97,7 @@ export default class Camera
 
     setZoom()
     {
-        // Set up
+
         this.zoom = {}
         this.zoom.easing = 0.1
         this.zoom.minDistance = 14
@@ -112,14 +106,12 @@ export default class Camera
         this.zoom.targetValue = this.zoom.value
         this.zoom.distance = this.zoom.minDistance + this.zoom.amplitude * this.zoom.value
 
-        // Listen to mousewheel event
         document.addEventListener('mousewheel', (_event) =>
         {
             this.zoom.targetValue += _event.deltaY * 0.001
             this.zoom.targetValue = Math.min(Math.max(this.zoom.targetValue, 0), 1)
         }, { passive: true })
 
-        // Touch
         this.zoom.touch = {}
         this.zoom.touch.startDistance = 0
         this.zoom.touch.startValue = 0
@@ -147,7 +139,6 @@ export default class Camera
             }
         })
 
-        // Time tick event
         this.time.on('tick', () =>
         {
             this.zoom.value += (this.zoom.targetValue - this.zoom.value) * this.zoom.easing
@@ -157,7 +148,7 @@ export default class Camera
 
     setPan()
     {
-        // Set up
+
         this.pan = {}
         this.pan.enabled = false
         this.pan.active = false

@@ -5,14 +5,12 @@ export default class Floor
 {
     constructor(_options)
     {
-        // Options
+
         this.debug = _options.debug
 
-        // Container
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
 
-        // Geometry
         this.geometry = new THREE.PlaneGeometry(2, 2, 10, 10)
 
         this.colors = {};
@@ -21,7 +19,6 @@ export default class Floor
         this.colors.bottomRight = '#1c1c1c';  // Fast Schwarz
         this.colors.bottomLeft = '#111111';
 
-        // Material
         this.material = new FloorMaterial()
 
         this.updateMaterial = () =>
@@ -52,18 +49,16 @@ export default class Floor
 
         this.updateMaterial()
 
-        // Mesh
         this.mesh = new THREE.Mesh(this.geometry, this.material)
         this.mesh.frustumCulled = false
         this.mesh.matrixAutoUpdate = false
         this.mesh.updateMatrix()
         this.container.add(this.mesh)
 
-        // Debug
         if(this.debug)
         {
             const folder = this.debug.addFolder('floor')
-            // folder.open()
+
 
             folder.addColor(this.colors, 'topLeft').onChange(this.updateMaterial)
             folder.addColor(this.colors, 'topRight').onChange(this.updateMaterial)

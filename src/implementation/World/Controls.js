@@ -85,9 +85,8 @@ export default class Controls extends EventEmitter
                     this.actions.boost = true
                     break
 
-                // case ' ':
-                //     this.jump(true)
-                //     break
+
+
             }
         }
 
@@ -146,7 +145,6 @@ export default class Controls extends EventEmitter
         this.touch.joystick = {}
         this.touch.joystick.active = false
 
-        // Element
         this.touch.joystick.$element = document.createElement('div')
         this.touch.joystick.$element.style.userSelect = 'none'
         this.touch.joystick.$element.style.position = 'fixed'
@@ -158,7 +156,7 @@ export default class Controls extends EventEmitter
         this.touch.joystick.$element.style.transition = 'opacity 0.3s 0.0s'
         this.touch.joystick.$element.style.willChange = 'opacity'
         this.touch.joystick.$element.style.opacity = '0'
-        // this.touch.joystick.$element.style.backgroundColor = '#ff0000'
+
         document.body.appendChild(this.touch.joystick.$element)
 
         this.touch.joystick.$cursor = document.createElement('div')
@@ -187,7 +185,6 @@ export default class Controls extends EventEmitter
         this.touch.joystick.$limit.style.boxSizing = 'border-box'
         this.touch.joystick.$element.appendChild(this.touch.joystick.$limit)
 
-        // Angle
         this.touch.joystick.angle = {}
 
         this.touch.joystick.angle.offset = Math.PI * 0.18
@@ -203,7 +200,6 @@ export default class Controls extends EventEmitter
         this.touch.joystick.angle.originalValue = 0
         this.touch.joystick.angle.value = - Math.PI * 0.5
 
-        // Resize
         this.touch.joystick.resize = () =>
         {
             const boundings = this.touch.joystick.$element.getBoundingClientRect()
@@ -215,20 +211,18 @@ export default class Controls extends EventEmitter
         this.sizes.on('resize', this.touch.joystick.resize)
         this.touch.joystick.resize()
 
-        // Time tick
         this.time.on('tick', () =>
         {
-            // Joystick active
+
             if(this.touch.joystick.active)
             {
-                // Calculate joystick angle
+
                 this.touch.joystick.angle.originalValue = - Math.atan2(
                     this.touch.joystick.angle.current.y - this.touch.joystick.angle.center.y,
                     this.touch.joystick.angle.current.x - this.touch.joystick.angle.center.x
                 )
                 this.touch.joystick.angle.value = this.touch.joystick.angle.originalValue + this.touch.joystick.angle.offset
 
-                // Update joystick
                 const distance = Math.hypot(this.touch.joystick.angle.current.y - this.touch.joystick.angle.center.y, this.touch.joystick.angle.current.x - this.touch.joystick.angle.center.x)
                 let radius = distance
                 if(radius > 20)
@@ -245,7 +239,6 @@ export default class Controls extends EventEmitter
             }
         })
 
-        // Events
         this.touch.joystick.events = {}
         this.touch.joystick.touchIdentifier = null
         this.touch.joystick.events.touchstart = (_event) =>
@@ -314,7 +307,6 @@ export default class Controls extends EventEmitter
          */
         this.touch.boost = {}
 
-        // Element
         this.touch.boost.$element = document.createElement('div')
         this.touch.boost.$element.style.userSelect = 'none'
         this.touch.boost.$element.style.position = 'fixed'
@@ -325,7 +317,7 @@ export default class Controls extends EventEmitter
         this.touch.boost.$element.style.transition = 'opacity 0.3s 0.4s'
         this.touch.boost.$element.style.willChange = 'opacity'
         this.touch.boost.$element.style.opacity = '0'
-        // this.touch.boost.$element.style.backgroundColor = '#00ff00'
+
         document.body.appendChild(this.touch.boost.$element)
 
         this.touch.boost.$border = document.createElement('div')
@@ -351,7 +343,6 @@ export default class Controls extends EventEmitter
         this.touch.boost.$icon.style.backgroundSize = 'cover'
         this.touch.boost.$element.appendChild(this.touch.boost.$icon)
 
-        // Events
         this.touch.boost.events = {}
         this.touch.boost.touchIdentifier = null
         this.touch.boost.events.touchstart = (_event) =>
@@ -398,7 +389,6 @@ export default class Controls extends EventEmitter
          */
         this.touch.forward = {}
 
-        // Element
         this.touch.forward.$element = document.createElement('div')
         this.touch.forward.$element.style.userSelect = 'none'
         this.touch.forward.$element.style.position = 'fixed'
@@ -409,7 +399,7 @@ export default class Controls extends EventEmitter
         this.touch.forward.$element.style.transition = 'opacity 0.3s 0.3s'
         this.touch.forward.$element.style.willChange = 'opacity'
         this.touch.forward.$element.style.opacity = '0'
-        // this.touch.forward.$element.style.backgroundColor = '#00ff00'
+
         document.body.appendChild(this.touch.forward.$element)
 
         this.touch.forward.$border = document.createElement('div')
@@ -435,7 +425,6 @@ export default class Controls extends EventEmitter
         this.touch.forward.$icon.style.backgroundSize = 'cover'
         this.touch.forward.$element.appendChild(this.touch.forward.$icon)
 
-        // Events
         this.touch.forward.events = {}
         this.touch.forward.touchIdentifier = null
         this.touch.forward.events.touchstart = (_event) =>
@@ -480,7 +469,6 @@ export default class Controls extends EventEmitter
          */
         this.touch.brake = {}
 
-        // Element
         this.touch.brake.$element = document.createElement('div')
         this.touch.brake.$element.style.userSelect = 'none'
         this.touch.brake.$element.style.position = 'fixed'
@@ -491,7 +479,7 @@ export default class Controls extends EventEmitter
         this.touch.brake.$element.style.transition = 'opacity 0.3s 0.2s'
         this.touch.brake.$element.style.willChange = 'opacity'
         this.touch.brake.$element.style.opacity = '0'
-        // this.touch.brake.$element.style.backgroundColor = '#ff0000'
+
         document.body.appendChild(this.touch.brake.$element)
 
         this.touch.brake.$border = document.createElement('div')
@@ -518,7 +506,6 @@ export default class Controls extends EventEmitter
         this.touch.brake.$icon.style.transform = 'rotate(180deg)'
         this.touch.brake.$element.appendChild(this.touch.brake.$icon)
 
-        // Events
         this.touch.brake.events = {}
         this.touch.brake.touchIdentifier = null
         this.touch.brake.events.touchstart = (_event) =>
@@ -561,7 +548,6 @@ export default class Controls extends EventEmitter
          */
         this.touch.backward = {}
 
-        // Element
         this.touch.backward.$element = document.createElement('div')
         this.touch.backward.$element.style.userSelect = 'none'
         this.touch.backward.$element.style.position = 'fixed'
@@ -572,7 +558,7 @@ export default class Controls extends EventEmitter
         this.touch.backward.$element.style.transition = 'opacity 0.3s 0.1s'
         this.touch.backward.$element.style.willChange = 'opacity'
         this.touch.backward.$element.style.opacity = '0'
-        // this.touch.backward.$element.style.backgroundColor = '#0000ff'
+
         document.body.appendChild(this.touch.backward.$element)
 
         this.touch.backward.$border = document.createElement('div')
@@ -599,7 +585,6 @@ export default class Controls extends EventEmitter
         this.touch.backward.$icon.style.transform = 'rotate(180deg)'
         this.touch.backward.$element.appendChild(this.touch.backward.$icon)
 
-        // Events
         this.touch.backward.events = {}
         this.touch.backward.touchIdentifier = null
         this.touch.backward.events.touchstart = (_event) =>
@@ -639,7 +624,6 @@ export default class Controls extends EventEmitter
 
         this.touch.backward.$element.addEventListener('touchstart', this.touch.backward.events.touchstart)
 
-        // Reveal
         this.touch.reveal = () =>
         {
             this.touch.joystick.$element.style.opacity = 1

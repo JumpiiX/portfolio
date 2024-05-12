@@ -6,7 +6,7 @@ export default class Car
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.resources = _options.resources
         this.objects = _options.objects
@@ -20,15 +20,13 @@ export default class Car
         this.debug = _options.debug
         this.config = _options.config
 
-        // Set up
         this.container = new THREE.Object3D()
         this.position = new THREE.Vector3()
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('car')
-            // this.debugFolder.open()
+
         }
 
         this.setModels()
@@ -46,7 +44,6 @@ export default class Car
     {
         this.models = {}
 
-        // Cyber truck
 
             this.models.chassis = this.resources.items.carCyberTruckChassis
             this.models.antena = this.resources.items.carCyberTruckAntena
@@ -54,8 +51,6 @@ export default class Car
             this.models.backLightsReverse = this.resources.items.carCyberTruckBackLightsReverse
             this.models.wheel = this.resources.items.carCyberTruckWheel
 
-
-        // Default
 
     }
 
@@ -68,10 +63,9 @@ export default class Car
         this.movement.localAcceleration = new THREE.Vector3()
         this.movement.lastScreech = 0
 
-        // Time tick
         this.time.on('tick', () =>
         {
-            // Movement
+
             const movementSpeed = new THREE.Vector3()
             movementSpeed.copy(this.chassis.object.position).sub(this.chassis.oldPosition)
             movementSpeed.multiplyScalar(1 / this.time.delta * 17)
@@ -81,7 +75,6 @@ export default class Car
             this.movement.localSpeed = this.movement.speed.clone().applyAxisAngle(new THREE.Vector3(0, 0, 1), - this.chassis.object.rotation.z)
             this.movement.localAcceleration = this.movement.acceleration.clone().applyAxisAngle(new THREE.Vector3(0, 0, 1), - this.chassis.object.rotation.z)
 
-            // Sound
             this.sounds.engine.speed = this.movement.localSpeed.x
             this.sounds.engine.acceleration = this.controls.actions.up ? (this.controls.actions.boost ? 1 : 0.5) : 0
 
@@ -104,20 +97,17 @@ export default class Car
 
         this.shadows.add(this.chassis.object, { sizeX: 3, sizeY: 2, offsetZ: 0.2 })
 
-        // Time tick
         this.time.on('tick', () =>
         {
-            // Save old position for movement calculation
+
             this.chassis.oldPosition = this.chassis.object.position.clone()
 
-            // Update if mode physics
             if(!this.transformControls.enabled)
             {
                 this.chassis.object.position.copy(this.physics.car.chassis.body.position).add(this.chassis.offset)
                 this.chassis.object.quaternion.copy(this.physics.car.chassis.body.quaternion)
             }
 
-            // Update position
             this.position.copy(this.chassis.object.position)
         })
     }
@@ -133,17 +123,14 @@ export default class Car
         this.antena.object = this.objects.getConvertedMesh(this.models.antena.scene.children)
         this.chassis.object.add(this.antena.object)
 
-        // this.antena.bunnyEarLeft = this.objects.getConvertedMesh(this.models.bunnyEarLeft.scene.children)
-        // this.chassis.object.add(this.antena.bunnyEarLeft)
 
-        // this.antena.bunnyEarRight = this.objects.getConvertedMesh(this.models.bunnyEarRight.scene.children)
-        // this.chassis.object.add(this.antena.bunnyEarRight)
+
+
 
         this.antena.speed = new THREE.Vector2()
         this.antena.absolutePosition = new THREE.Vector2()
         this.antena.localPosition = new THREE.Vector2()
 
-        // Time tick
         this.time.on('tick', () =>
         {
             const max = 1
@@ -168,14 +155,11 @@ export default class Car
             this.antena.object.rotation.y = this.antena.localPosition.x * 0.1
             this.antena.object.rotation.x = this.antena.localPosition.y * 0.1
 
-            // this.antena.bunnyEarLeft.rotation.y = this.antena.localPosition.x * 0.1
-            // this.antena.bunnyEarLeft.rotation.x = this.antena.localPosition.y * 0.1
 
-            // this.antena.bunnyEarRight.rotation.y = this.antena.localPosition.x * 0.1
-            // this.antena.bunnyEarRight.rotation.x = this.antena.localPosition.y * 0.1
+
+
         })
 
-        // Debug
         if(this.debug)
         {
             const folder = this.debugFolder.addFolder('antena')
@@ -203,7 +187,6 @@ export default class Car
 
         this.chassis.object.add(this.backLightsBrake.object)
 
-        // Back lights brake
         this.backLightsReverse = {}
 
         this.backLightsReverse.material = this.materials.pures.items.yellow.clone()
@@ -218,7 +201,6 @@ export default class Car
 
         this.chassis.object.add(this.backLightsReverse.object)
 
-        // Time tick
         this.time.on('tick', () =>
         {
             this.backLightsBrake.material.opacity = this.physics.controls.actions.brake ? 1 : 0.5
@@ -240,7 +222,6 @@ export default class Car
             this.container.add(object)
         }
 
-        // Time tick
         this.time.on('tick', () =>
         {
             if(!this.transformControls.enabled)
@@ -343,7 +324,7 @@ export default class Car
 
         window.addEventListener('keydown', (_event) =>
         {
-            // Play horn sound
+
             if(_event.code === 'KeyH')
             {
                 if(this.time.elapsed - this.klaxon.lastTime > 400)
@@ -355,7 +336,6 @@ export default class Car
                 this.sounds.play(Math.random() < 0.002 ? 'carHorn2' : 'carHorn1')
             }
 
-            // Rain horns
             if(_event.key === 'k')
             {
                 const x = this.position.x + (Math.random() - 0.5) * 3

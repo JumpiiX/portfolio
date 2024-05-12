@@ -9,9 +9,9 @@ varying vec2 vUv;
 void main()
 {
     float uStrikeWidth = 0.5;
-    // float uStrikeAlpha = 0.25;
+
     float uBorderWidth = 0.1;
-    // float uBorderAlpha = 0.5;
+
 
     if(vModelPosition.z < 0.0)
     {
@@ -27,5 +27,4 @@ void main()
 
     gl_FragColor = vec4(vec3(1.0), alpha);
 
-    // gl_FragColor = vec4(vUv, 1.0, 1.0);
 }

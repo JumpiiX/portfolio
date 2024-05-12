@@ -20,10 +20,9 @@ export default class Application
      */
     constructor(_options)
     {
-        // Options
+
         this.$canvas = _options.$canvas
 
-        // Set up
         this.time = new Time()
         this.sizes = new Sizes()
         this.resources = new Resources()
@@ -75,23 +74,21 @@ export default class Application
      */
     setRenderer()
     {
-        // Scene
+
         this.scene = new THREE.Scene()
 
-        // Renderer
         this.renderer = new THREE.WebGLRenderer({
             canvas: this.$canvas,
             alpha: true,
             powerPreference: 'high-performance'
         })
-        // this.renderer.setClearColor(0x414141, 1)
+
         this.renderer.setClearColor(0x000000, 1)
-        // this.renderer.setPixelRatio(Math.min(Math.max(window.devicePixelRatio, 1.5), 2))
+
         this.renderer.setPixelRatio(2)
         this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
         this.renderer.autoClear = false
 
-        // Resize event
         this.sizes.on('resize', () =>
         {
             this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)
@@ -127,16 +124,14 @@ export default class Application
     {
         this.passes = {}
 
-        // Debug
         if(this.debug)
         {
             this.passes.debugFolder = this.debug.addFolder('postprocess')
-            // this.passes.debugFolder.open()
+
         }
 
         this.passes.composer = new EffectComposer(this.renderer)
 
-        // Create passes
         this.passes.renderPass = new RenderPass(this.scene, this.camera.instance)
 
         this.passes.horizontalBlurPass = new ShaderPass(BlurPass)
@@ -149,7 +144,6 @@ export default class Application
         this.passes.verticalBlurPass.material.uniforms.uResolution.value = new THREE.Vector2(this.sizes.viewport.width, this.sizes.viewport.height)
         this.passes.verticalBlurPass.material.uniforms.uStrength.value = new THREE.Vector2(0, this.passes.verticalBlurPass.strength)
 
-        // Debug
         if(this.debug)
         {
             const folder = this.passes.debugFolder.addFolder('blur')
@@ -167,7 +161,6 @@ export default class Application
         this.passes.glowsPass.material.uniforms.uColor.value.convertLinearToSRGB()
         this.passes.glowsPass.material.uniforms.uAlpha.value = 0.55
 
-        // Debug
         if(this.debug)
         {
             const folder = this.passes.debugFolder.addFolder('glows')
@@ -183,25 +176,21 @@ export default class Application
             folder.add(this.passes.glowsPass.material.uniforms.uAlpha, 'value').step(0.001).min(0).max(1).name('alpha')
         }
 
-        // Add passes
         this.passes.composer.addPass(this.passes.renderPass)
         this.passes.composer.addPass(this.passes.horizontalBlurPass)
         this.passes.composer.addPass(this.passes.verticalBlurPass)
         this.passes.composer.addPass(this.passes.glowsPass)
 
-        // Time tick
         this.time.on('tick', () =>
         {
             this.passes.horizontalBlurPass.enabled = this.passes.horizontalBlurPass.material.uniforms.uStrength.value.x > 0
             this.passes.verticalBlurPass.enabled = this.passes.verticalBlurPass.material.uniforms.uStrength.value.y > 0
 
-            // Renderer
             this.passes.composer.render()
-            // this.renderer.domElement.style.background = 'black'
-            // this.renderer.render(this.scene, this.camera.instance)
+
+
         })
 
-        // Resize event
         this.sizes.on('resize', () =>
         {
             this.renderer.setSize(this.sizes.viewport.width, this.sizes.viewport.height)

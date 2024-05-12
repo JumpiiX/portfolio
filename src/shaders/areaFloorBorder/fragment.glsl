@@ -18,5 +18,5 @@ void main()
     alpha *= progress;
 
     gl_FragColor = vec4(uColor, alpha);
-    // gl_FragColor = vec4(vec3(progress), 1.0);
+
 }

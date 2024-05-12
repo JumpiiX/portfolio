@@ -4,7 +4,7 @@ export default class IntroSection
 {
     constructor(_options)
     {
-        // Options
+
         this.config = _options.config
         this.time = _options.time
         this.resources = _options.resources
@@ -16,7 +16,6 @@ export default class IntroSection
         this.x = _options.x
         this.y = _options.y
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
@@ -50,7 +49,6 @@ export default class IntroSection
          */
         this.instructions.arrows = {}
 
-        // Label
         this.instructions.arrows.label = {}
 
         this.instructions.arrows.label.texture = this.config.touch ? this.resources.items.introInstructionsControlsTexture : this.resources.items.introInstructionsArrowsTexture
@@ -66,7 +64,7 @@ export default class IntroSection
 
         if(!this.config.touch)
         {
-            // Keys
+
             this.instructions.arrows.up = this.objects.add({
                 base: this.resources.items.introArrowKeyBase.scene,
                 collision: this.resources.items.introArrowKeyCollision.scene,
@@ -121,7 +119,6 @@ export default class IntroSection
         this.nameInstructions.container.updateMatrix();
         this.container.add(this.nameInstructions.container);
 
-        // Label
         this.nameInstructions.label = {};
 
         this.nameInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1); // Kleinere Geometrie als die Pfeile
@@ -154,7 +151,6 @@ export default class IntroSection
         this.otherInstructions.x = 16
         this.otherInstructions.y = - 2
 
-        // Container
         this.otherInstructions.container = new THREE.Object3D()
         this.otherInstructions.container.position.x = this.otherInstructions.x
         this.otherInstructions.container.position.y = this.otherInstructions.y
@@ -162,7 +158,6 @@ export default class IntroSection
         this.otherInstructions.container.updateMatrix()
         this.container.add(this.otherInstructions.container)
 
-        // Label
         this.otherInstructions.label = {}
 
         this.otherInstructions.label.geometry = new THREE.PlaneGeometry(6, 6, 1, 1)
@@ -177,7 +172,6 @@ export default class IntroSection
         this.otherInstructions.label.mesh.matrixAutoUpdate = false
         this.otherInstructions.container.add(this.otherInstructions.label.mesh)
 
-        // Horn
         this.otherInstructions.horn = this.objects.add({
             base: this.resources.items.hornBase.scene,
             collision: this.resources.items.hornCollision.scene,
@@ -193,7 +187,7 @@ export default class IntroSection
 
     setTitles()
     {
-        // Title
+
        this.objects.add({
             base: this.resources.items.introCreativeBase.scene,
             collision: this.resources.items.introCreativeCollision.scene,

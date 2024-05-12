@@ -26,7 +26,6 @@ export default class Resources extends EventEmitter
     {
         this.loaders = []
 
-        // Images
         this.loaders.push({
             extensions: ['jpg', 'png', 'webp'],
             action: (_resource) =>
@@ -47,7 +46,6 @@ export default class Resources extends EventEmitter
             }
         })
 
-        // Draco
         const dracoLoader = new DRACOLoader()
         dracoLoader.setDecoderPath('draco/')
         dracoLoader.setDecoderConfig({ type: 'js' })
@@ -65,7 +63,6 @@ export default class Resources extends EventEmitter
             }
         })
 
-        // GLTF
         const gltfLoader = new GLTFLoader()
         gltfLoader.setDRACOLoader(dracoLoader)
 
@@ -80,7 +77,6 @@ export default class Resources extends EventEmitter
             }
         })
 
-        // FBX
         const fbxLoader = new FBXLoader()
 
         this.loaders.push({

@@ -6,13 +6,12 @@ export default class Shadows
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.debug = _options.debug
         this.renderer = _options.renderer
         this.camera = _options.camera
 
-        // Set up
         this.alpha = 0
         this.maxDistance = 3
         this.distancePower = 2
@@ -25,11 +24,10 @@ export default class Shadows
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('shadows')
-            // this.debugFolder.open()
+
 
             this.debugFolder.add(this, 'alpha').step(0.01).min(0).max(1)
             this.debugFolder.add(this, 'maxDistance').step(0.01).min(0).max(10)
@@ -58,24 +56,22 @@ export default class Shadows
         this.setGeometry()
         this.setHelper()
 
-        // Time tick
         this.time.on('tick', () =>
         {
             for(const _shadow of this.items)
             {
-                // Position
+
                 const z = Math.max(_shadow.reference.position.z + _shadow.offsetZ, 0)
                 const sunOffset = this.sun.vector.clone().multiplyScalar(z)
 
                 _shadow.mesh.position.x = _shadow.reference.position.x + sunOffset.x
                 _shadow.mesh.position.y = _shadow.reference.position.y + sunOffset.y
 
-                // Angle
-                // Project the rotation as a vector on a plane and extract the angle
+
                 const rotationVector = new THREE.Vector3(1, 0, 0)
                 rotationVector.applyQuaternion(_shadow.reference.quaternion)
-                // const planeVector = new THREE.Vector3(0, 0, 1)
-                // planeVector.normalize()
+
+
                 const projectedRotationVector = rotationVector.clone().projectOnPlane(new THREE.Vector3(0, 0, 1))
 
                 let orientationAlpha = Math.abs(rotationVector.angleTo(new THREE.Vector3(0, 0, 1)) - Math.PI * 0.5) / (Math.PI * 0.5)
@@ -87,7 +83,6 @@ export default class Shadows
                 const angle = Math.atan2(projectedRotationVector.y, projectedRotationVector.x)
                 _shadow.mesh.rotation.z = angle
 
-                // Alpha
                 let alpha = (this.maxDistance - z) / this.maxDistance
                 alpha = Math.min(Math.max(alpha, 0), 1)
                 alpha = Math.pow(alpha, this.distancePower)
@@ -119,7 +114,6 @@ export default class Shadows
 
         this.sun.update()
 
-        // Debug
         if(this.debug)
         {
             const folder = this.debugFolder.addFolder('sun')
@@ -134,11 +128,10 @@ export default class Shadows
 
     setMaterials()
     {
-        // Wireframe
+
         this.materials = {}
         this.materials.wireframe = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true })
 
-        // Base
         this.materials.base = new ShadowMaterial()
         this.materials.base.depthWrite = false
         this.materials.base.uniforms.uColor.value = new THREE.Color(this.color)
@@ -196,7 +189,6 @@ export default class Shadows
 
         this.container.add(this.helper.transformControls)
 
-        // Debug
         if(this.debug)
         {
             const folder = this.debugFolder.addFolder('helper')
@@ -218,22 +210,17 @@ export default class Shadows
     {
         const shadow = {}
 
-        // Options
         shadow.offsetZ = typeof _options.offsetZ === 'undefined' ? 0 : _options.offsetZ
         shadow.alpha = typeof _options.alpha === 'undefined' ? 1 : _options.alpha
 
-        // Reference
         shadow.reference = _reference
 
-        // Material
         shadow.material = this.materials.base.clone()
 
-        // Mesh
         shadow.mesh = new THREE.Mesh(this.geometry, this.wireframeVisible ? this.materials.wireframe : shadow.material)
         shadow.mesh.position.z = this.zFightingDistance
         shadow.mesh.scale.set(_options.sizeX, _options.sizeY, 2.4)
 
-        // Save
         this.container.add(shadow.mesh)
         this.items.push(shadow)
 

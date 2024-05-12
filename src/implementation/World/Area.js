@@ -13,7 +13,6 @@ export default class Area extends EventEmitter
     {
         super()
 
-        // Options
         this.config = _options.config
         this.renderer = _options.renderer
         this.resources = _options.resources
@@ -26,7 +25,6 @@ export default class Area extends EventEmitter
         this.testCar = _options.testCar
         this.active = _options.active
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.position.x = this.position.x
         this.container.position.y = this.position.y
@@ -84,26 +82,22 @@ export default class Area extends EventEmitter
 
     setFence()
     {
-        // Set up
+
         this.fence = {}
         this.fence.depth = 0.5
         this.fence.offset = 0.5
 
-        // Geometry
         this.fence.geometry = new AreaFenceGeometry(this.halfExtents.x * 2, this.halfExtents.y * 2, this.fence.depth)
 
-        // Material
-        // this.fence.material = new THREE.MeshBasicMaterial({ color: 0xffffff, wireframe: true, transparent: true, opacity: 0.5 })
+
         this.fence.material = new AreaFenceMaterial()
         this.fence.material.uniforms.uBorderAlpha.value = 0.5
         this.fence.material.uniforms.uStrikeAlpha.value = 0.25
 
-        // Mesh
         this.fence.mesh = new THREE.Mesh(this.fence.geometry, this.fence.material)
         this.fence.mesh.position.z = - this.fence.depth
         this.container.add(this.fence.mesh)
 
-        // Time tick
         this.time.on('tick', () =>
         {
             this.fence.material.uniforms.uTime.value = this.time.elapsed
@@ -116,12 +110,10 @@ export default class Area extends EventEmitter
         this.key.hiddenZ = 1.5
         this.key.shownZ = 2.5
 
-        // Container
         this.key.container = new THREE.Object3D()
         this.key.container.position.z = this.key.hiddenZ
         this.container.add(this.key.container)
 
-        // Enter
         this.key.enter = {}
         this.key.enter.size = 1.4
         this.key.enter.geometry = new THREE.PlaneGeometry(this.key.enter.size, this.key.enter.size / 4, 1, 1)
@@ -139,7 +131,6 @@ export default class Area extends EventEmitter
         this.key.enter.mesh.updateMatrix()
         this.key.container.add(this.key.enter.mesh)
 
-        // Icon
         this.key.icon = {}
         this.key.icon.size = 0.75
         this.key.icon.geometry = new THREE.PlaneGeometry(this.key.icon.size, this.key.icon.size, 1, 1)
@@ -160,13 +151,12 @@ export default class Area extends EventEmitter
 
     interact(_showKey = true)
     {
-        // Not active
+
         if(!this.active)
         {
             return
         }
 
-        // Kill tweens
         gsap.killTweensOf(this.fence.mesh.position)
         gsap.killTweensOf(this.floorBorder.material.uniforms.uAlpha)
         gsap.killTweensOf(this.fence.material.uniforms.uBorderAlpha)
@@ -178,7 +168,6 @@ export default class Area extends EventEmitter
             gsap.killTweensOf(this.key.enter.material)
         }
 
-        // Animate
         gsap.to(this.fence.mesh.position, { z: 0, duration: 0.05, onComplete: () =>
         {
             gsap.to(this.fence.mesh.position, { z: 0.5, duration: 0.25, ease: 'back.out(2)' })
@@ -193,7 +182,6 @@ export default class Area extends EventEmitter
             gsap.fromTo(this.key.enter.material, { opacity: 1 }, { opacity: 0.5, duration: 1.5 })
         }
 
-        // Play sound
         this.sounds.play('uiArea')
 
         this.trigger('interact')
@@ -203,24 +191,20 @@ export default class Area extends EventEmitter
     {
         this.isIn = true
 
-        // Not active
         if(!this.active)
         {
             return
         }
 
-        // Fence
         gsap.killTweensOf(this.fence.mesh.position)
         gsap.to(this.fence.mesh.position, { z: this.fence.offset, duration: 0.35, ease: 'back.out(3)' })
 
-        // Key
         if(this.hasKey)
         {
             gsap.killTweensOf(this.key.container.position)
             gsap.killTweensOf(this.key.icon.material)
             gsap.killTweensOf(this.key.enter.material)
 
-            // Animate
             if(_showKey)
             {
                 gsap.to(this.key.container.position, { z: this.key.shownZ, duration: 0.35, ease: 'back.out(3)', delay: 0.1 })
@@ -229,7 +213,6 @@ export default class Area extends EventEmitter
             }
         }
 
-        // Change cursor
         if(!this.config.touch)
         {
             this.renderer.domElement.classList.add('has-cursor-pointer')
@@ -242,11 +225,9 @@ export default class Area extends EventEmitter
     {
         this.isIn = false
 
-        // Fence
         gsap.killTweensOf(this.fence.mesh.position)
         gsap.to(this.fence.mesh.position, { z: - this.fence.depth, duration: 0.35, ease: 'back.in(4)' })
 
-        // Key
         if(this.hasKey)
         {
             gsap.killTweensOf(this.key.container.position)
@@ -257,7 +238,6 @@ export default class Area extends EventEmitter
             gsap.to(this.key.enter.material, { opacity: 0, duration: 0.35, ease: 'back.in(4)', delay: 0.1 })
         }
 
-        // Change cursor
         if(!this.config.touch)
         {
             this.renderer.domElement.classList.remove('has-cursor-pointer')

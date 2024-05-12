@@ -2,12 +2,11 @@ import * as THREE from 'three';
 
 export default class Tiles {
     constructor(_options) {
-        // Options
+
         this.resources = _options.resources;
         this.objects = _options.objects;
         this.debug = _options.debug;
 
-        // Set up
         this.items = [];
         this.interDistance = 1.5;
         this.tangentDistance = 0.3;
@@ -84,7 +83,6 @@ export default class Tiles {
         tilePath.tangentVector = tilePath.directionVector.clone().rotateAround(new THREE.Vector2(0, 0), Math.PI * 0.5).multiplyScalar(this.tangentDistance);
         tilePath.angle = tilePath.directionVector.angle();
 
-        // Create tiles
         for (let i = 0; i < tilePath.count; i++) {
             const model = this.models.pick();
             const position = tilePath.start.clone().add(tilePath.interVector.clone().multiplyScalar(i)).add(tilePath.centeringVector);

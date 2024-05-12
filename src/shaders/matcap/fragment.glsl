@@ -8,7 +8,6 @@ uniform sampler2D matcap;
 
 varying vec3 vViewPosition;
 
-// Custom start
 uniform mat3 normalMatrix;
 uniform float uIndirectDistanceAmplitude;
 uniform float uIndirectDistanceStrength;
@@ -19,7 +18,7 @@ uniform float uIndirectAnglePower;
 uniform vec3 uIndirectColor;
 
 varying vec3 vWorldPosition;
-// Custom end
+
 
 #ifndef FLAT_SHADED
 
@@ -64,7 +63,7 @@ void main() {
     #ifdef USE_MATCAP
 
         vec4 matcapColor = texture2D( matcap, uv );
-        // matcapColor = matcapTexelToLinear( matcapColor );
+
 
     #else
 
@@ -74,7 +73,6 @@ void main() {
 
     vec3 outgoingLight = diffuseColor.rgb * matcapColor.rgb;
 
-    // Custom start
     float indirectDistanceStrength = clamp(1.0 - vWorldPosition.z / uIndirectDistanceAmplitude, 0.0, 1.0) * uIndirectDistanceStrength;
     indirectDistanceStrength = pow(indirectDistanceStrength, uIndirectDistancePower);
     indirectDistanceStrength = clamp(indirectDistanceStrength, 0.0, 1.0);
@@ -85,15 +83,13 @@ void main() {
     indirectAngleStrength = clamp(indirectAngleStrength * uIndirectAngleStrength, 0.0, 1.0);
     indirectAngleStrength = pow(indirectAngleStrength, uIndirectAnglePower);
 
-    // vec3 uIndirectColor = vec3(208.0 / 255.0, 69.0 / 255.0, 0.0 / 255.0);
     float indirectStrength = indirectDistanceStrength * indirectAngleStrength;
-    // float indirectStrength = indirectAngleStrength;
 
-    // gl_FragColor = vec4(vec3(worldNormal), 1.0);
-    // gl_FragColor = vec4(outgoingLight, diffuseColor.a);
-    // gl_FragColor = vec4(vec3(indirectStrength), diffuseColor.a);
+
+
+
     gl_FragColor = vec4(mix(outgoingLight, uIndirectColor, indirectStrength), diffuseColor.a);
-    // Custom end
+
 
 	#include <opaque_fragment>
 	#include <tonemapping_fragment>

@@ -4,7 +4,7 @@ export default class InformationSection
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.resources = _options.resources
         this.objects = _options.objects
@@ -14,7 +14,6 @@ export default class InformationSection
         this.x = _options.x
         this.y = _options.y
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
 
@@ -31,7 +30,7 @@ export default class InformationSection
 
     setLinks()
     {
-        // Set up
+
         this.links = {}
         this.links.x = 1.95
         this.links.y = - 1.5
@@ -48,7 +47,6 @@ export default class InformationSection
         this.links.container.matrixAutoUpdate = false
         this.container.add(this.links.container)
 
-        // Options
         this.links.options = [
             {
                 href: 'https://twitter.com/jumpiix24/',
@@ -68,17 +66,15 @@ export default class InformationSection
             }
         ]
 
-        // Create each link
         let i = 0
         for(const _option of this.links.options)
         {
-            // Set up
+
             const item = {}
             item.x = this.x + this.links.x + this.links.distanceBetween * i
             item.y = this.y + this.links.y
             item.href = _option.href
 
-            // Create area
             item.area = this.areas.add({
                 position: new THREE.Vector2(item.x, item.y),
                 halfExtents: new THREE.Vector2(this.links.halfExtents.x, this.links.halfExtents.y)
@@ -88,12 +84,10 @@ export default class InformationSection
                 window.open(_option.href, '_blank')
             })
 
-            // Texture
             item.texture = _option.labelTexture
             item.texture.magFilter = THREE.NearestFilter
             item.texture.minFilter = THREE.LinearFilter
 
-            // Create label
             item.labelMesh = new THREE.Mesh(this.links.labelGeometry, new THREE.MeshBasicMaterial({ wireframe: false, color: 0xffffff, alphaMap: _option.labelTexture, depthTest: true, depthWrite: false, transparent: true }))
             item.labelMesh.position.x = item.x + this.links.labelWidth * 0.5 - this.links.halfExtents.x
             item.labelMesh.position.y = item.y + this.links.labelOffset
@@ -101,7 +95,6 @@ export default class InformationSection
             item.labelMesh.updateMatrix()
             this.links.container.add(item.labelMesh)
 
-            // Save
             this.links.items.push(item)
 
             i++
@@ -110,24 +103,20 @@ export default class InformationSection
 
     setActivities()
     {
-        // Set up
+
         this.activities = {}
         this.activities.x = this.x + 0
         this.activities.y = this.y - 10
         this.activities.multiplier = 5.5
 
-        // Geometry
         this.activities.geometry = new THREE.PlaneGeometry(2 * this.activities.multiplier, 1 * this.activities.multiplier, 1, 1)
 
-        // Texture
         this.activities.texture = this.resources.items.informationActivitiesTexture
         this.activities.texture.magFilter = THREE.NearestFilter
         this.activities.texture.minFilter = THREE.LinearFilter
 
-        // Material
         this.activities.material = new THREE.MeshBasicMaterial({ wireframe: false, color: 0xffffff, alphaMap: this.activities.texture, transparent: true })
 
-        // Mesh
         this.activities.mesh = new THREE.Mesh(this.activities.geometry, this.activities.material)
         this.activities.mesh.position.x = this.activities.x
         this.activities.mesh.position.y = this.activities.y

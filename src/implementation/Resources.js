@@ -13,7 +13,7 @@ export default class Resources extends EventEmitter
         this.items = {}
 
         this.loader.load([
-            // Matcaps
+
             { name: 'matcapBeige', source: './models/matcaps/beige.png', type: 'texture' },
             { name: 'matcapBlack', source: './models/matcaps/black.png', type: 'texture' },
             { name: 'matcapOrange', source: './models/matcaps/orange.png', type: 'texture' },
@@ -29,7 +29,6 @@ export default class Resources extends EventEmitter
             { name: 'matcapMetal', source: './models/matcaps/metal.png', type: 'texture' },
              { name: 'matcapGold', source: './models/matcaps/gold.png', type: 'texture' },
 
-            // Intro
 
             { name: 'introStaticBase', source: './models/intro/static/base.glb' },
             { name: 'introStaticCollision', source: './models/intro/static/collision.glb' },
@@ -50,15 +49,12 @@ export default class Resources extends EventEmitter
             { name: 'introDevBase', source: './models/intro/dev/base.glb' },
             { name: 'introDevCollision', source: './models/intro/dev/collision.glb' },
 
-
-            // Car default
             { name: 'carCyberTruckChassis', source: './models/car/cyberTruck/chassis.glb' },
             { name: 'carCyberTruckWheel', source: './models/car/cyberTruck/wheel.glb' },
             { name: 'carCyberTruckBackLightsBrake', source: './models/car/cyberTruck/backLightsBrake.glb' },
             { name: 'carCyberTruckBackLightsReverse', source: './models/car/cyberTruck/backLightsReverse.glb' },
             { name: 'carCyberTruckAntena', source: './models/car/cyberTruck/antena.glb' },
 
-            // Information
 
             { name: 'informationContactTwitterLabel', source: './models/information/static/contactTwitterLabel.png', type: 'texture' },
             { name: 'informationContactGithubLabel', source: './models/information/static/contactGithubLabel.png', type: 'texture' },
@@ -67,28 +63,21 @@ export default class Resources extends EventEmitter
 
             { name: 'informationActivities', source: './models/information/static/activities.png', type: 'texture' },
 
-            // Brick
             { name: 'brickBase', source: './models/brick/base.glb' },
             { name: 'brickCollision', source: './models/brick/collision.glb' },
 
-            // Horn
             { name: 'hornBase', source: './models/horn/base.glb' },
             { name: 'hornCollision', source: './models/horn/collision.glb' },
 
-
-            // Lemon
             { name: 'lemonBase', source: './models/lemon/base.glb' },
             { name: 'lemonCollision', source: './models/lemon/collision.glb' },
 
-
-            // Areas
             { name: 'areaKeyEnter', source: './models/area/keyEnter.png', type: 'texture' },
             { name: 'areaEnter', source: './models/area/enter.png', type: 'texture' },
             { name: 'areaOpen', source: './models/area/open.png', type: 'texture' },
             { name: 'areaReset', source: './models/area/reset.png', type: 'texture' },
             { name: 'areaQuestionMark', source: './models/area/questionMark.png', type: 'texture' },
 
-            // Tiles
             { name: 'tilesABase', source: './models/tiles/a/base.glb' },
             { name: 'tilesACollision', source: './models/tiles/a/collision.glb' },
 
@@ -104,11 +93,9 @@ export default class Resources extends EventEmitter
             { name: 'tilesEBase', source: './models/tiles/e/base.glb' },
             { name: 'tilesECollision', source: './models/tiles/e/collision.glb' },
 
-            // Konami
             { name: 'konamiLabel', source: './models/konami/label.png', type: 'texture' },
             { name: 'konamiLabelTouch', source: './models/konami/label-touch.png', type: 'texture' },
 
-            // Wigs
             { name: 'wig1', source: './models/wigs/wig1.glb' },
             { name: 'wig2', source: './models/wigs/wig2.glb' },
             { name: 'wig3', source: './models/wigs/wig3.glb' },

@@ -20,13 +20,12 @@ varying vec3 vViewPosition;
 #include <logdepthbuf_pars_vertex>
 #include <clipping_planes_pars_vertex>
 
-// Custom start
 uniform float uRevealProgress;
 
 varying vec3 vWorldPosition;
 
 #include ../partials/easeSin.glsl
-// Custom end
+
 
 void main() {
 
@@ -49,12 +48,10 @@ void main() {
     #include <skinning_vertex>
     #include <displacementmap_vertex>
 
-    // Custom start
     vec4 worldNormal = modelMatrix * vec4(normal, 1.0);
 
     vec4 worldPosition = modelMatrix * vec4(transformed, 1.0);
 
-    // Reveal
     float distanceToCenter = length(worldPosition);
     float zAmplitude = 3.2;
     float revealProgress = (uRevealProgress - distanceToCenter / 30.0) * 5.0;
@@ -66,14 +63,12 @@ void main() {
     }
     worldPosition.z -= revealProgress * zAmplitude;
 
-    // Update varying
     vWorldPosition = worldPosition.xyz;
 
     vec4 mvPosition = viewMatrix * worldPosition;
     gl_Position = projectionMatrix * mvPosition;
-    // Custom end
 
-    // #include <project_vertex>
+
 
     #include <logdepthbuf_vertex>
     #include <clipping_planes_vertex>

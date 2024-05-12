@@ -6,7 +6,7 @@ export default class Objects
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.resources = _options.resources
         this.materials = _options.materials
@@ -15,7 +15,6 @@ export default class Objects
         this.sounds = _options.sounds
         this.debug = _options.debug
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
 
@@ -31,23 +30,21 @@ export default class Objects
         this.parsers = {}
 
         this.parsers.items = [
-            // Shade
+
             {
                 regex: /^shade([a-z]+)_?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) =>
                 {
-                    // Find material
+
                     const match = _mesh.name.match(/^shade([a-z]+)_?[0-9]{0,3}?/i)
                     const materialName = `${match[1].substring(0, 1).toLowerCase()}${match[1].substring(1)}` // PastalCase to camelCase
                     let material = this.materials.shades.items[materialName]
 
-                    // Default
                     if(typeof material === 'undefined')
                     {
                         material = new THREE.MeshNormalMaterial()
                     }
 
-                    // Create clone mesh with new material
                     const mesh = _options.duplicated ? _mesh.clone() : _mesh
                     mesh.material = material
 
@@ -66,23 +63,20 @@ export default class Objects
                 }
             },
 
-            // Shade
             {
                 regex: /^pure([a-z]+)_?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) =>
                 {
-                    // Find material
+
                     const match = _mesh.name.match(/^pure([a-z]+)_?[0-9]{0,3}?/i)
                     const materialName = match[1].toLowerCase()
                     let material = this.materials.pures.items[materialName]
 
-                    // Default
                     if(typeof material === 'undefined')
                     {
                         material = new THREE.MeshNormalMaterial()
                     }
 
-                    // Create clone mesh with new material
                     const mesh = _options.duplicated ? _mesh.clone() : _mesh
                     mesh.material = material
 
@@ -90,12 +84,11 @@ export default class Objects
                 }
             },
 
-            // Floor
             {
                 regex: /^floor_?[0-9]{0,3}?/i,
                 apply: (_mesh, _options) =>
                 {
-                    // Create floor manually because of missing UV
+
                     const geometry = new THREE.PlaneGeometry(_mesh.scale.x, _mesh.scale.y, 10, 10)
                     const material = this.materials.items.floorShadow.clone()
 
@@ -114,11 +107,10 @@ export default class Objects
             }
         ]
 
-        // Default
         this.parsers.default = {}
         this.parsers.default.apply = (_mesh) =>
         {
-            // Create clone mesh with normal material
+
             const mesh = _mesh.clone()
             mesh.material = this.materials.shades.items.white
 
@@ -139,28 +131,22 @@ export default class Objects
         {
             let mergeItem = this.merge.items[_name]
 
-            // Create merge item if not found
             if(!mergeItem)
             {
                 mergeItem = {}
 
-                // Geometry
                 mergeItem.geometry = new THREE.BufferGeometry()
                 mergeItem.geometriesToMerge = []
 
-                // Material
                 mergeItem.material = _mesh.material
                 mergeItem.material.side = THREE.DoubleSide
 
-                // Mesh
                 mergeItem.mesh = new THREE.Mesh(mergeItem.geometry, mergeItem.material)
                 this.merge.container.add(mergeItem.mesh)
 
-                // Save
                 this.merge.items[_name] = mergeItem
             }
 
-            // Apply the object transform to the geometry and save it for later merge
             const geometry = _mesh.geometry
             _mesh.updateMatrixWorld() // Maybe not
             geometry.applyMatrix(_mesh.matrixWorld)
@@ -193,18 +179,15 @@ export default class Objects
                         {
                             this.merge.add(materialName, _child)
 
-                            // Remove from parent
                             _object.container.remove(_child)
                         }
                     }
 
-                    // If no children, remove
 
                     _object.shouldMerge = false
                 }
             }
 
-            // Apply merge
             this.merge.applyMerge()
         }
     }
@@ -214,12 +197,11 @@ export default class Objects
         const container = new THREE.Object3D()
         const center = new THREE.Vector3()
 
-        // Go through each base child
         const baseChildren = [..._children]
 
         for(const _child of baseChildren)
         {
-            // Find center
+
             if(_child.name.match(/^center_?[0-9]{0,3}?/i))
             {
                 center.set(_child.position.x, _child.position.y, _child.position.z)
@@ -227,22 +209,19 @@ export default class Objects
 
             if(_child instanceof THREE.Mesh)
             {
-                // Find parser and use default if not found
+
                 let parser = this.parsers.items.find((_item) => _child.name.match(_item.regex))
                 if(typeof parser === 'undefined')
                 {
                     parser = this.parsers.default
                 }
 
-                // Create mesh by applying parser
                 const mesh = parser.apply(_child, _options)
 
-                // Add to container
                 container.add(mesh)
             }
         }
 
-        // Recenter
         if(center.length() > 0)
         {
             for(const _child of container.children)
@@ -269,30 +248,25 @@ export default class Objects
         object.merged = false
         object.shouldMerge = _options.mass === 0
 
-        // Offset
         const offset = new THREE.Vector3()
         if(_options.offset)
         {
             offset.copy(_options.offset)
         }
 
-        // Rotation
         const rotation = new THREE.Euler()
         if(_options.rotation)
         {
             rotation.copy(_options.rotation)
         }
 
-        // Sleep
         const sleep = typeof _options.sleep === 'undefined' ? true : _options.sleep
 
-        // Container
         object.container = this.getConvertedMesh(_options.base.children, _options)
         object.container.position.copy(offset)
         object.container.rotation.copy(rotation)
         this.container.add(object.container)
 
-        // Deactivate matrix auto update
         if(_options.mass === 0)
         {
             object.container.matrixAutoUpdate = false
@@ -305,7 +279,6 @@ export default class Objects
             }
         }
 
-        // Create physics object
         object.collision = this.physics.addObjectFromThree({
             meshes: [..._options.collision.children],
             offset,
@@ -319,7 +292,6 @@ export default class Objects
             _child.position.sub(object.collision.center)
         }
 
-        // Sound
         if(_options.soundName)
         {
             object.collision.body.addEventListener('collide', (_event) =>
@@ -329,14 +301,12 @@ export default class Objects
             })
         }
 
-        // Shadow
-        // Add shadow
+
         if(_options.shadow)
         {
             this.shadows.add(object.container, _options.shadow)
         }
 
-        // Time tick event
         if(_options.mass > 0)
         {
             this.time.on('tick', () =>
@@ -346,7 +316,6 @@ export default class Objects
             })
         }
 
-        // Save
         this.items.push(object)
 
         return object

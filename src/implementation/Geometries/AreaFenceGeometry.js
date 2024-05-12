@@ -1,28 +1,24 @@
 import * as THREE from 'three'
 
-// AreaFenceGeometry
 class AreaFenceGeometry
 {
     constructor(_width, _height, _depth,)
     {
-        // Parameters
+
         this.parameters = {
             width: _width,
             height: _height,
             depth: _depth
         }
 
-        // Set up
         this.type = 'AreaFloorGeometry'
 
-        // buffers
         const length = 8
 
         const vertices = new Float32Array(length * 3)
         const uvs = new Uint32Array(length * 2)
         const indices = new Uint32Array(length * 6)
 
-        // Vertices
         vertices[0 * 3 + 0] = _width * 0.5
         vertices[0 * 3 + 1] = _height * 0.5
         vertices[0 * 3 + 2] = 0
@@ -55,7 +51,6 @@ class AreaFenceGeometry
         vertices[7 * 3 + 1] = _height * 0.5
         vertices[7 * 3 + 2] = _depth
 
-        // Uvs
         uvs[0 * 2 + 0] = 0
         uvs[0 * 2 + 1] = 0
 
@@ -80,7 +75,6 @@ class AreaFenceGeometry
         uvs[7 * 2 + 0] = 1
         uvs[7 * 2 + 1] = 1
 
-        // Index
         indices[0 * 3 + 0] = 0
         indices[0 * 3 + 1] = 4
         indices[0 * 3 + 2] = 1
@@ -115,10 +109,8 @@ class AreaFenceGeometry
 
         const geometry = new THREE.BufferGeometry()
 
-        // Set indices
         geometry.setIndex(new THREE.BufferAttribute(indices, 1, false))
 
-        // Set attributes
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
         geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2))
 

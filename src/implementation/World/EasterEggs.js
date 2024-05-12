@@ -4,7 +4,7 @@ export default class EasterEggs
 {
     constructor(_options)
     {
-        // Options
+
         this.resources = _options.resources
         this.car = _options.car
         this.walls = _options.walls
@@ -19,7 +19,7 @@ export default class EasterEggs
 
         this.setKonamiCode()
         this.setWigs()
-        // this.setEggs()
+
     }
 
     setKonamiCode()
@@ -38,7 +38,6 @@ export default class EasterEggs
         this.konamiCode.latestKeys = []
         this.konamiCode.count = 0
 
-        // Label
         if(this.config.touch)
         {
             this.konamiCode.labelTexture = this.resources.items.konamiLabelTouchTexture
@@ -57,7 +56,6 @@ export default class EasterEggs
         this.konamiCode.label.updateMatrix()
         this.container.add(this.konamiCode.label)
 
-        // Lemon option
         this.konamiCode.lemonOption = {
             base: this.resources.items.lemonBase.scene,
             collision: this.resources.items.lemonCollision.scene,
@@ -70,7 +68,6 @@ export default class EasterEggs
             soundName: 'woodHit'
         }
 
-        // First lemon
         this.objects.add({
             ...this.konamiCode.lemonOption,
             offset: new THREE.Vector3(this.konamiCode.x, this.konamiCode.y, 0.4)
@@ -176,7 +173,6 @@ export default class EasterEggs
         this.wigs = {}
         this.wigs.currentWig = null
 
-        // Container
         this.wigs.container = new THREE.Object3D()
         this.wigs.container.position.x = - 0.1
         this.wigs.container.position.y = - 30
@@ -184,7 +180,6 @@ export default class EasterEggs
         this.wigs.container.updateMatrix()
         this.container.add(this.wigs.container)
 
-        // Materials
         this.wigs.materials = [
             this.materials.shades.items.green,
             this.materials.shades.items.red,
@@ -194,7 +189,6 @@ export default class EasterEggs
             this.materials.shades.items.white
         ]
 
-        // List
         this.wigs.list = [
             this.resources.items.wig1,
             this.resources.items.wig2,
@@ -202,7 +196,6 @@ export default class EasterEggs
             this.resources.items.wig4
         ]
 
-        // Items
         this.wigs.items = []
 
         for(const _wig of this.wigs.list)
@@ -222,16 +215,14 @@ export default class EasterEggs
             this.wigs.items.push(container)
         }
 
-        // Change
         this.wigs.change = () =>
         {
-            // Hide previous wig
+
             if(this.wigs.currentWig)
             {
                 this.wigs.currentWig.visible = false
             }
 
-            // Set random wig
             let randomWig = null
             do
             {
@@ -241,7 +232,6 @@ export default class EasterEggs
             this.wigs.currentWig = randomWig
             this.wigs.currentWig.visible = true
 
-            // Set random material
             const randomMaterial = this.wigs.materials[Math.floor(Math.random() * this.wigs.materials.length)]
 
             for(const _mesh of this.wigs.currentWig.children)
@@ -251,14 +241,12 @@ export default class EasterEggs
 
         }
 
-        // Area
         this.wigs.area = this.areas.add({
             position: new THREE.Vector2(0, 80),
             halfExtents: new THREE.Vector2(2, 2)
         })
         this.wigs.area.on('interact', this.wigs.change)
 
-        // Label
         this.resources.items.areaQuestionMarkTexture.magFilter = THREE.NearestFilter
         this.resources.items.areaQuestionMarkTexture.minFilter = THREE.LinearFilter
         this.wigs.areaLabel = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, color: 0xffffff, alphaMap: this.resources.items.areaQuestionMarkTexture }))

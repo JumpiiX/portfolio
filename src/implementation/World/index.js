@@ -20,7 +20,7 @@ export default class World
 {
     constructor(_options)
     {
-        // Options
+
         this.config = _options.config
         this.debug = _options.debug
         this.resources = _options.resources
@@ -31,18 +31,15 @@ export default class World
         this.renderer = _options.renderer
         this.passes = _options.passes
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('world')
             this.debugFolder.open()
         }
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
 
-        // this.setAxes()
         this.setSounds()
         this.setControls()
         this.setFloor()
@@ -79,7 +76,6 @@ export default class World
         this.reveal.previousMatcapsProgress = null
         this.reveal.previousFloorShadowsProgress = null
 
-        // Go method
         this.reveal.go = () =>
         {
             gsap.fromTo(this.reveal, { matcapsProgress: 0 }, { matcapsProgress: 1, duration: 3 })
@@ -95,7 +91,6 @@ export default class World
                 }
             }
 
-            // Car
             this.physics.car.chassis.body.sleep()
             this.physics.car.chassis.body.position.set(0, 0, 12)
 
@@ -104,14 +99,12 @@ export default class World
                 this.physics.car.chassis.body.wakeUp()
             }, 300)
 
-            // Sound
             gsap.fromTo(this.sounds.engine.volume, { master: 0 }, { master: 0.7, duration: 0.5, delay: 0.3, ease: 'power2.in' })
             window.setTimeout(() =>
             {
                 this.sounds.play('reveal')
             }, 400)
 
-            // Controls
             if(this.controls.touch)
             {
                 window.setTimeout(() =>
@@ -121,38 +114,33 @@ export default class World
             }
         }
 
-        // Time tick
         this.time.on('tick',() =>
         {
-            // Matcap progress changed
+
             if(this.reveal.matcapsProgress !== this.reveal.previousMatcapsProgress)
             {
-                // Update each material
+
                 for(const _materialKey in this.materials.shades.items)
                 {
                     const material = this.materials.shades.items[_materialKey]
                     material.uniforms.uRevealProgress.value = this.reveal.matcapsProgress
                 }
 
-                // Save
                 this.reveal.previousMatcapsProgress = this.reveal.matcapsProgress
             }
 
-            // Matcap progress changed
             if(this.reveal.floorShadowsProgress !== this.reveal.previousFloorShadowsProgress)
             {
-                // Update each floor shadow
+
                 for(const _mesh of this.objects.floorShadows)
                 {
                     _mesh.material.uniforms.uAlpha.value = this.reveal.floorShadowsProgress
                 }
 
-                // Save
                 this.reveal.previousFloorShadowsProgress = this.reveal.floorShadowsProgress
             }
         })
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder.add(this.reveal, 'matcapsProgress').step(0.0001).min(0).max(1).name('matcapsProgress')
@@ -165,7 +153,6 @@ export default class World
     {
         this.startingScreen = {}
 
-        // Area
         this.startingScreen.area = this.areas.add({
             position: new THREE.Vector2(0, 0),
             halfExtents: new THREE.Vector2(2.35, 1.5),
@@ -174,7 +161,6 @@ export default class World
             active: false
         })
 
-        // Loading label
         this.startingScreen.loadingLabel = {}
         this.startingScreen.loadingLabel.geometry = new THREE.PlaneGeometry(2.5, 2.5 / 4)
         this.startingScreen.loadingLabel.image = new Image()
@@ -188,7 +174,6 @@ export default class World
         this.startingScreen.loadingLabel.mesh.matrixAutoUpdate = false
         this.container.add(this.startingScreen.loadingLabel.mesh)
 
-        // Start label
         this.startingScreen.startLabel = {}
         this.startingScreen.startLabel.geometry = new THREE.PlaneGeometry(2.5, 2.5 / 4)
         this.startingScreen.startLabel.image = new Image()
@@ -203,15 +188,13 @@ export default class World
         this.startingScreen.startLabel.mesh.matrixAutoUpdate = false
         this.container.add(this.startingScreen.startLabel.mesh)
 
-        // Progress
         this.resources.on('progress', (_progress) =>
         {
-            // Update area
+
             this.startingScreen.area.floorBorder.material.uniforms.uAlpha.value = 1
             this.startingScreen.area.floorBorder.material.uniforms.uLoadProgress.value = _progress
         })
 
-        // Ready
         this.resources.on('ready', () =>
         {
             window.requestAnimationFrame(() =>
@@ -224,7 +207,6 @@ export default class World
             })
         })
 
-        // On interact, reveal
         this.startingScreen.area.on('interact', () =>
         {
             this.startingScreen.area.deactivate()
@@ -390,7 +372,6 @@ export default class World
     {
         this.sections = {}
 
-        // Generic options
         const options = {
             config: this.config,
             time: this.time,
@@ -405,7 +386,6 @@ export default class World
             debug: this.debugFolder
         }
 
-        // Intro
         this.sections.intro = new IntroSection({
             ...options,
             x: 0,
@@ -413,14 +393,12 @@ export default class World
         })
         this.container.add(this.sections.intro.container)
 
-
-        // Information
         this.sections.information = new InformationSection({
             ...options,
             x: 1.2,
             y: - 20
-            // x: 0,
-            // y: - 10
+
+
         })
         this.container.add(this.sections.information.container)
 

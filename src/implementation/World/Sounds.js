@@ -4,18 +4,16 @@ export default class Sounds
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.debug = _options.debug
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('sounds')
-            // this.debugFolder.open()
+
         }
 
-        // Set up
         this.items = []
 
         this.setSettings()
@@ -158,7 +156,7 @@ export default class Sounds
 
     setMasterVolume()
     {
-        // Set up
+
         this.masterVolume = 0.5
         Howler.volume(this.masterVolume)
 
@@ -167,7 +165,6 @@ export default class Sounds
             Howler.volume(this.masterVolume)
         })
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder.add(this, 'masterVolume').step(0.001).min(0).max(1).onChange(() =>
@@ -179,11 +176,10 @@ export default class Sounds
 
     setMute()
     {
-        // Set up
+
         this.muted = typeof this.debug !== 'undefined'
         Howler.mute(this.muted)
 
-        // M Key
         window.addEventListener('keydown', (_event) =>
         {
             if(_event.key === 'm')
@@ -193,7 +189,6 @@ export default class Sounds
             }
         })
 
-        // Tab focus / blur
         document.addEventListener('visibilitychange', () =>
         {
             if(document.hidden)
@@ -206,7 +201,6 @@ export default class Sounds
             }
         })
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder.add(this, 'muted').listen().onChange(() =>
@@ -218,7 +212,7 @@ export default class Sounds
 
     setEngine()
     {
-        // Set up
+
         this.engine = {}
 
         this.engine.progress = 0
@@ -246,7 +240,6 @@ export default class Sounds
 
         this.engine.sound.play()
 
-        // Time tick
         this.time.on('tick', () =>
         {
             let progress = Math.abs(this.engine.speed) * this.engine.speedMultiplier + Math.max(this.engine.acceleration, 0) * this.engine.accelerationMultiplier
@@ -254,16 +247,13 @@ export default class Sounds
 
             this.engine.progress += (progress - this.engine.progress) * this.engine[progress > this.engine.progress ? 'progressEasingUp' : 'progressEasingDown']
 
-            // Rate
             const rateAmplitude = this.engine.rate.max - this.engine.rate.min
             this.engine.sound.rate(this.engine.rate.min + rateAmplitude * this.engine.progress)
 
-            // Volume
             const volumeAmplitude = this.engine.volume.max - this.engine.volume.min
             this.engine.sound.volume((this.engine.volume.min + volumeAmplitude * this.engine.progress) * this.engine.volume.master)
         })
 
-        // Debug
         if(this.debug)
         {
             const folder = this.debugFolder.addFolder('engine')
@@ -312,22 +302,18 @@ export default class Sounds
 
         if(item && time > item.lastTime + item.minDelta && (item.velocityMin === 0 || velocity > item.velocityMin))
         {
-            // Find random sound
+
             const sound = item.sounds[Math.floor(Math.random() * item.sounds.length)]
 
-            // Update volume
             let volume = Math.min(Math.max((velocity - item.velocityMin) * item.velocityMultiplier, item.volumeMin), item.volumeMax)
             volume = Math.pow(volume, 2)
             sound.volume(volume)
 
-            // Update rate
             const rateAmplitude = item.rateMax - item.rateMin
             sound.rate(item.rateMin + Math.random() * rateAmplitude)
 
-            // Play
             sound.play()
 
-            // Save last play time
             item.lastTime = time
         }
     }

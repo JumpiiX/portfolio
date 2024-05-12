@@ -5,18 +5,16 @@ export default class Zones
 {
     constructor(_options)
     {
-        // Options
+
         this.time = _options.time
         this.sizes = _options.sizes
         this.physics = _options.physics
         this.debug = _options.debug
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.visible = false
         this.container.matrixAutoUpdate = false
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('zones')
@@ -68,11 +66,10 @@ export default class Zones
 
     add(_settings)
     {
-        // Set up
+
         const zone = new Zone(_settings)
         this.container.add(zone.mesh)
 
-        // Save
         this.items.push(zone)
 
         return zone

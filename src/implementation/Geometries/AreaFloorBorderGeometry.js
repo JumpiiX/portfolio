@@ -4,17 +4,15 @@ class AreaFloorBorderGeometry
 {
     constructor(_width, _height, _thickness)
     {
-        // Parameters
+
         this.parameters = {
             width: _width,
             height: _height,
             thickness: _thickness
         }
 
-        // Set up
         this.type = 'AreaFloorGeometry'
 
-        // buffers
         const length = 8
 
         const vertices = new Float32Array(length * 3)
@@ -26,7 +24,6 @@ class AreaFloorBorderGeometry
         const innerWidth = outerWidth - _thickness
         const innerHeight = outerHeight - _thickness
 
-        // Vertices
         vertices[0 * 3 + 0] = innerWidth * 0.5
         vertices[0 * 3 + 1] = innerHeight * 0.5
         vertices[0 * 3 + 2] = 0
@@ -59,7 +56,6 @@ class AreaFloorBorderGeometry
         vertices[7 * 3 + 1] = outerHeight * 0.5
         vertices[7 * 3 + 2] = 0
 
-        // Index
         indices[0 * 3 + 0] = 4
         indices[0 * 3 + 1] = 0
         indices[0 * 3 + 2] = 1
@@ -94,10 +90,8 @@ class AreaFloorBorderGeometry
 
         const geometry = new THREE.BufferGeometry()
 
-        // Set indices
         geometry.setIndex(new THREE.BufferAttribute(indices, 1, false))
 
-        // Set attributes
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
 
         return geometry

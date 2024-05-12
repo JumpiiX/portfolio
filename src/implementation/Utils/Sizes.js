@@ -9,7 +9,6 @@ export default class Sizes extends EventEmitter
     {
         super()
 
-        // Viewport size
         this.viewport = {}
         this.$sizeViewport = document.createElement('div')
         this.$sizeViewport.style.width = '100vw'
@@ -19,7 +18,6 @@ export default class Sizes extends EventEmitter
         this.$sizeViewport.style.left = 0
         this.$sizeViewport.style.pointerEvents = 'none'
 
-        // Resize event
         this.resize = this.resize.bind(this)
         window.addEventListener('resize', this.resize)
 
