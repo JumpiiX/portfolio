@@ -110,7 +110,6 @@ class AreaFenceGeometry
         const geometry = new THREE.BufferGeometry()
 
         geometry.setIndex(new THREE.BufferAttribute(indices, 1, false))
-
         geometry.setAttribute('position', new THREE.Float32BufferAttribute(vertices, 3))
         geometry.setAttribute('uv', new THREE.Float32BufferAttribute(uvs, 2))
 
