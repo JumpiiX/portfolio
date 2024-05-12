@@ -50,10 +50,6 @@ export default class Resources extends EventEmitter
             { name: 'introDevBase', source: './models/intro/dev/base.glb' },
             { name: 'introDevCollision', source: './models/intro/dev/collision.glb' },
 
-            // Intro
-            { name: 'crossroadsStaticBase', source: './models/crossroads/static/base.glb' },
-            { name: 'crossroadsStaticCollision', source: './models/crossroads/static/collision.glb' },
-            { name: 'crossroadsStaticFloorShadow', source: './models/crossroads/static/floorShadow.png', type: 'texture' },
 
             // Car default
             { name: 'carCyberTruckChassis', source: './models/car/cyberTruck/chassis.glb' },
@@ -79,21 +75,11 @@ export default class Resources extends EventEmitter
             { name: 'hornBase', source: './models/horn/base.glb' },
             { name: 'hornCollision', source: './models/horn/collision.glb' },
 
-            // Webby trophy
-            { name: 'webbyTrophyBase', source: './models/webbyTrophy/base.glb' },
-            { name: 'webbyTrophyCollision', source: './models/webbyTrophy/collision.glb' },
 
             // Lemon
             { name: 'lemonBase', source: './models/lemon/base.glb' },
             { name: 'lemonCollision', source: './models/lemon/collision.glb' },
 
-            // Bownling ball
-            { name: 'bowlingBallBase', source: './models/bowlingBall/base.glb' },
-            { name: 'bowlingBallCollision', source: './models/bowlingBall/collision.glb' },
-
-            // Bownling ball
-            { name: 'bowlingPinBase', source: './models/bowlingPin/base.glb' },
-            { name: 'bowlingPinCollision', source: './models/bowlingPin/collision.glb' },
 
             // Areas
             { name: 'areaKeyEnter', source: './models/area/keyEnter.png', type: 'texture' },
