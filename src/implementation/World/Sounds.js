@@ -47,28 +47,6 @@ export default class Sounds
                 rateMax: 0.75
             },
             {
-                name: 'bowlingPin',
-                sounds: ['./sounds/bowling/pin-1.mp3'],
-                minDelta: 0,
-                velocityMin: 1,
-                velocityMultiplier: 0.5,
-                volumeMin: 0.35,
-                volumeMax: 1,
-                rateMin: 0.1,
-                rateMax: 0.85
-            },
-            {
-                name: 'bowlingBall',
-                sounds: ['./sounds/bowling/pin-1.mp3', './sounds/bowling/pin-1.mp3', './sounds/bowling/pin-1.mp3'],
-                minDelta: 0,
-                velocityMin: 1,
-                velocityMultiplier: 0.5,
-                volumeMin: 0.35,
-                volumeMax: 1,
-                rateMin: 0.1,
-                rateMax: 0.2
-            },
-            {
                 name: 'carHit',
                 sounds: ['./sounds/car-hits/car-hit-1.mp3', './sounds/car-hits/car-hit-3.mp3', './sounds/car-hits/car-hit-4.mp3', './sounds/car-hits/car-hit-5.mp3'],
                 minDelta: 100,
