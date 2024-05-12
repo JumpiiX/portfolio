@@ -6,14 +6,12 @@ export default class Camera
 {
     constructor(_options)
     {
-        // Options
         this.time = _options.time
         this.sizes = _options.sizes
         this.renderer = _options.renderer
         this.debug = _options.debug
         this.config = _options.config
 
-        // Set up
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
 
@@ -21,11 +19,9 @@ export default class Camera
         this.targetEased = new THREE.Vector3(0, 0, 0)
         this.easing = 0.15
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder = this.debug.addFolder('camera')
-            // this.debugFolder.open()
         }
 
         this.setAngle()
@@ -95,13 +91,10 @@ export default class Camera
                 this.targetEased.y += (this.target.y - this.targetEased.y) * this.easing
                 this.targetEased.z += (this.target.z - this.targetEased.z) * this.easing
 
-                // Apply zoom
                 this.instance.position.copy(this.targetEased).add(this.angle.value.clone().normalize().multiplyScalar(this.zoom.distance))
 
-                // Look at target
                 this.instance.lookAt(this.targetEased)
 
-                // Apply pan
                 this.instance.position.x += this.pan.value.x
                 this.instance.position.y += this.pan.value.y
             }
@@ -197,7 +190,6 @@ export default class Camera
         {
             this.pan.enabled = true
 
-            // Update cursor
             this.renderer.domElement.classList.add('has-cursor-grab')
         }
 
@@ -205,7 +197,6 @@ export default class Camera
         {
             this.pan.enabled = false
 
-            // Update cursor
             this.renderer.domElement.classList.remove('has-cursor-grab')
         }
 
@@ -216,17 +207,13 @@ export default class Camera
                 return
             }
 
-            // Update cursor
             this.renderer.domElement.classList.add('has-cursor-grabbing')
 
-            // Activate
             this.pan.active = true
 
-            // Update mouse position
             this.pan.mouse.x = (_x / this.sizes.viewport.width) * 2 - 1
             this.pan.mouse.y = - (_y / this.sizes.viewport.height) * 2 + 1
 
-            // Get start position
             this.pan.raycaster.setFromCamera(this.pan.mouse, this.instance)
 
             const intersects = this.pan.raycaster.intersectObjects([this.pan.hitMesh])
@@ -258,14 +245,11 @@ export default class Camera
 
         this.pan.up = () =>
         {
-            // Deactivate
             this.pan.active = false
 
-            // Update cursor
             this.renderer.domElement.classList.remove('has-cursor-grabbing')
         }
 
-        // Mouse
         window.addEventListener('mousedown', (_event) =>
         {
             this.pan.down(_event.clientX, _event.clientY)
@@ -281,7 +265,6 @@ export default class Camera
             this.pan.up()
         })
 
-        // Touch
         this.renderer.domElement.addEventListener('touchstart', (_event) =>
         {
             if(_event.touches.length === 1)
@@ -303,13 +286,10 @@ export default class Camera
             this.pan.up()
         })
 
-        // Time tick event
         this.time.on('tick', () =>
         {
-            // If active
             if(this.pan.active && this.pan.needsUpdate)
             {
-                // Update target value
                 this.pan.raycaster.setFromCamera(this.pan.mouse, this.instance)
 
                 const intersects = this.pan.raycaster.intersectObjects([this.pan.hitMesh])
@@ -320,11 +300,9 @@ export default class Camera
                     this.pan.targetValue.y = - (intersects[0].point.y - this.pan.start.y)
                 }
 
-                // Update needsUpdate
                 this.pan.needsUpdate = false
             }
 
-            // Update value and apply easing
             this.pan.value.x += (this.pan.targetValue.x - this.pan.value.x) * this.pan.easing
             this.pan.value.y += (this.pan.targetValue.y - this.pan.value.y) * this.pan.easing
         })
@@ -332,13 +310,11 @@ export default class Camera
 
     setOrbitControls()
     {
-        // Set up
         this.orbitControls = new OrbitControls(this.instance, this.renderer.domElement)
         this.orbitControls.enabled = false
         this.orbitControls.enableKeys = false
         this.orbitControls.zoomSpeed = 0.5
 
-        // Debug
         if(this.debug)
         {
             this.debugFolder.add(this.orbitControls, 'enabled').name('orbitControlsEnabled')
