@@ -25,7 +25,6 @@ export default class Areas
 
     setMouse()
     {
-
         this.mouse = {}
         this.mouse.raycaster = new THREE.Raycaster()
         this.mouse.coordinates = new THREE.Vector2()
