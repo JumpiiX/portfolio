@@ -57,11 +57,11 @@ export default class InformationSection
                 labelTexture: this.resources.items.informationContactGithubLabelTexture
             },
             {
-                href: 'https://www.linkedin.com/in/jumpiix/',
+                href: 'https://www.linkedin.com/in/unterguggenberger/',
                 labelTexture: this.resources.items.informationContactLinkedinLabelTexture
             },
             {
-                href: 'mailto:unterguggenberger.david@gmail.com',
+                href: 'mailto:david@unterguggenberger.ch',
                 labelTexture: this.resources.items.informationContactMailLabelTexture
             }
         ]
