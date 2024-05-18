@@ -34,9 +34,9 @@ export default class ProjectsSection
         this.container.matrixAutoUpdate = false
         this.container.updateMatrix()
 
+        this.setList()
         this.setGeometries()
         this.setMeshes()
-        this.setList()
         this.setZone()
 
         for(const _options of this.list)
@@ -74,6 +74,15 @@ export default class ProjectsSection
                         './models/projects/tools/slideC.png'
                     ],
                 floorTexture: this.resources.items.projectsToolsFloorTexture,
+            },
+            {
+                name: 'Talent/',
+                imageSources:
+                    [
+                        './models/projects/talent/slideA.png',
+                        './models/projects/talent/slideB.png'
+                    ],
+                floorTexture: this.resources.items.projectsTalentFloorTexture,
             },
         ]
     }

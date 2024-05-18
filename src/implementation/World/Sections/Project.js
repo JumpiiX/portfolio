@@ -116,7 +116,7 @@ export default class Project
 
         this.floor.geometry = this.geometries.floor
 
-        this.floor.material =  new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, alphaMap: this.floor.texture })
+        this.floor.material =  new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, map: this.floor.texture, alphaMap: this.floor.texture })
 
         this.floor.mesh = new THREE.Mesh(this.floor.geometry, this.floor.material)
         this.floor.mesh.matrixAutoUpdate = false

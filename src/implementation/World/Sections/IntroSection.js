@@ -120,16 +120,16 @@ export default class IntroSection
         this.nameInstructions = {};
         this.nameInstructions.container = new THREE.Object3D();
 
-            this.nameInstructions.container.position.x = 6;
-            this.nameInstructions.container.position.y = -13;
+        this.nameInstructions.container.position.x = 8;
+        this.nameInstructions.container.position.y = -13.5;
 
+        this.nameInstructions.container.scale.set(2, 2, 2);
 
         this.nameInstructions.container.matrixAutoUpdate = false;
         this.nameInstructions.container.updateMatrix();
         this.container.add(this.nameInstructions.container);
 
         this.nameInstructions.label = {};
-
         this.nameInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1);
 
         this.nameInstructions.label.texture = this.resources.items.introNameTexture;
@@ -138,6 +138,7 @@ export default class IntroSection
 
         this.nameInstructions.label.material = new THREE.MeshBasicMaterial({
             transparent: true,
+            map: this.nameInstructions.label.texture,
             alphaMap: this.nameInstructions.label.texture,
             color: 0xffffff,
             depthWrite: false,
