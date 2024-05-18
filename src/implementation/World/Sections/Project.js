@@ -80,7 +80,6 @@ export default class Project
 
             image.src = _imageSource
 
-            // Plane
             board.planeMesh = this.meshes.boardPlane.clone()
             board.planeMesh.position.x = board.x
             board.planeMesh.position.y = board.y
