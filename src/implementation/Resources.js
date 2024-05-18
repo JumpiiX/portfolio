@@ -33,6 +33,7 @@ export default class Resources extends EventEmitter
             { name: 'introStaticCollision', source: './models/intro/static/collision.glb' },
             { name: 'introStaticFloorShadow', source: './models/intro/static/floorShadow.png', type: 'texture' },
             { name: 'introName', source: './models/intro/name.png', type: 'texture' },
+            { name: 'introProjects', source: './models/intro/projects.png', type: 'texture' },
 
             { name: 'introInstructionsLabels', source: './models/intro/instructions/labels.glb' },
             { name: 'introInstructionsArrows', source: './models/intro/instructions/arrows.png', type: 'texture' },
@@ -98,6 +99,12 @@ export default class Resources extends EventEmitter
             { name: 'wig2', source: './models/wigs/wig2.glb' },
             { name: 'wig3', source: './models/wigs/wig3.glb' },
             { name: 'wig4', source: './models/wigs/wig4.glb' },
+
+            { name: 'projectsBoardStructure', source: './models/projects/board/structure.glb' },
+            { name: 'projectsBoardCollision', source: './models/projects/board/collision.glb' },
+            { name: 'projectsBoardStructureFloorShadow', source: './models/projects/board/floorShadow.png', type: 'texture' },
+            { name: 'projectsBoardPlane', source: './models/projects/board/plane.glb' },
+            { name: 'projectsToolsFloor', source: './models/projects/tools/floorTexture.webp', type: 'texture' },
 
         ])
 
