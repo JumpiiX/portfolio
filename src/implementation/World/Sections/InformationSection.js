@@ -22,6 +22,7 @@ export default class InformationSection
         this.setLinks()
         this.setActivities()
         this.setTiles()
+        this.setStatic()
     }
 
 
@@ -100,7 +101,16 @@ export default class InformationSection
             i++
         }
     }
-
+    setStatic()
+    {
+        this.objects.add({
+            base: this.resources.items.informationStaticBase.scene,
+            collision: this.resources.items.informationStaticCollision.scene,
+            floorShadowTexture: this.resources.items.informationStaticFloorShadowTexture,
+            offset: new THREE.Vector3(this.x, this.y, 0),
+            mass: 0
+        })
+    }
     setActivities()
     {
 
