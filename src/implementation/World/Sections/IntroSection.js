@@ -27,6 +27,7 @@ export default class IntroSection
         this.setTiles()
         this.setDikes()
         this.setName();
+        this.setProjects();
     }
 
     setStatic()
@@ -111,8 +112,8 @@ export default class IntroSection
         this.nameInstructions = {};
         this.nameInstructions.container = new THREE.Object3D();
 
-            this.nameInstructions.container.position.x = 4;
-            this.nameInstructions.container.position.y = -8;
+            this.nameInstructions.container.position.x = 6;
+            this.nameInstructions.container.position.y = -18;
 
 
         this.nameInstructions.container.matrixAutoUpdate = false;
@@ -121,9 +122,9 @@ export default class IntroSection
 
         this.nameInstructions.label = {};
 
-        this.nameInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1); // Kleinere Geometrie als die Pfeile
+        this.nameInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1);
 
-        this.nameInstructions.label.texture = this.resources.items.introNameTexture; // Verwendung des vorhandenen Textures
+        this.nameInstructions.label.texture = this.resources.items.introNameTexture;
         this.nameInstructions.label.texture.magFilter = THREE.NearestFilter;
         this.nameInstructions.label.texture.minFilter = THREE.LinearFilter;
 
@@ -132,12 +133,45 @@ export default class IntroSection
             alphaMap: this.nameInstructions.label.texture,
             color: 0xffffff,
             depthWrite: false,
-            opacity: 1 // Vollständig sichtbar
+            opacity: 1
         });
 
         this.nameInstructions.label.mesh = new THREE.Mesh(this.nameInstructions.label.geometry, this.nameInstructions.label.material);
         this.nameInstructions.label.mesh.matrixAutoUpdate = false;
         this.nameInstructions.container.add(this.nameInstructions.label.mesh);
+    }
+
+    setProjects() {
+        this.projectsInstructions = {};
+        this.projectsInstructions.container = new THREE.Object3D();
+
+        this.projectsInstructions.container.position.x = 15;
+        this.projectsInstructions.container.position.y = -20;
+
+
+        this.projectsInstructions.container.matrixAutoUpdate = false;
+        this.projectsInstructions.container.updateMatrix();
+        this.container.add(this.projectsInstructions.container);
+
+        this.projectsInstructions.label = {};
+
+        this.projectsInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1);
+
+        this.projectsInstructions.label.texture = this.resources.items.introProjectsTexture;
+        this.projectsInstructions.label.texture.magFilter = THREE.NearestFilter;
+        this.projectsInstructions.label.texture.minFilter = THREE.LinearFilter;
+
+        this.projectsInstructions.label.material = new THREE.MeshBasicMaterial({
+            transparent: true,
+            alphaMap: this.projectsInstructions.label.texture,
+            color: 0xffffff,
+            depthWrite: false,
+            opacity: 1
+        });
+
+        this.projectsInstructions.label.mesh = new THREE.Mesh(this.projectsInstructions.label.geometry, this.projectsInstructions.label.material);
+        this.projectsInstructions.label.mesh.matrixAutoUpdate = false;
+        this.projectsInstructions.container.add(this.projectsInstructions.label.mesh);
     }
 
     setOtherInstructions()

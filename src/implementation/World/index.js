@@ -11,6 +11,7 @@ import Tiles from './Tiles.js'
 import Walls from './Walls.js'
 import IntroSection from './Sections/IntroSection.js'
 import InformationSection from './Sections/InformationSection.js'
+import ProjectsSection from './Sections/ProjectsSection.js'
 import Controls from './Controls.js'
 import Sounds from './Sounds.js'
 import gsap from 'gsap'
@@ -396,11 +397,15 @@ export default class World
             ...options,
             x: 1.2,
             y: - 20
-
-
         })
         this.container.add(this.sections.information.container)
 
+        this.sections.projects = new ProjectsSection({
+            ...options,
+            x: 30,
+            y: - 20
+        })
+        this.container.add(this.sections.projects.container)
     }
 
     setEasterEggs()
