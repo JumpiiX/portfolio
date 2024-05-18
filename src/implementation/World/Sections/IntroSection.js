@@ -27,7 +27,6 @@ export default class IntroSection
         this.setTiles()
         this.setDikes()
         this.setName();
-        this.setProjects();
     }
 
     setStatic()
@@ -39,6 +38,15 @@ export default class IntroSection
             offset: new THREE.Vector3(0, 0, 0),
             mass: 0
         })
+
+            this.objects.add({
+                base: this.resources.items.crossroadsStaticBase.scene,
+                collision: this.resources.items.crossroadsStaticCollision.scene,
+                floorShadowTexture: this.resources.items.crossroadsStaticFloorShadowTexture,
+                offset: new THREE.Vector3(3, -15, 0),
+                mass: 0
+            })
+
     }
 
     setInstructions()
@@ -113,7 +121,7 @@ export default class IntroSection
         this.nameInstructions.container = new THREE.Object3D();
 
             this.nameInstructions.container.position.x = 6;
-            this.nameInstructions.container.position.y = -18;
+            this.nameInstructions.container.position.y = -13;
 
 
         this.nameInstructions.container.matrixAutoUpdate = false;
@@ -139,39 +147,6 @@ export default class IntroSection
         this.nameInstructions.label.mesh = new THREE.Mesh(this.nameInstructions.label.geometry, this.nameInstructions.label.material);
         this.nameInstructions.label.mesh.matrixAutoUpdate = false;
         this.nameInstructions.container.add(this.nameInstructions.label.mesh);
-    }
-
-    setProjects() {
-        this.projectsInstructions = {};
-        this.projectsInstructions.container = new THREE.Object3D();
-
-        this.projectsInstructions.container.position.x = 15;
-        this.projectsInstructions.container.position.y = -20;
-
-
-        this.projectsInstructions.container.matrixAutoUpdate = false;
-        this.projectsInstructions.container.updateMatrix();
-        this.container.add(this.projectsInstructions.container);
-
-        this.projectsInstructions.label = {};
-
-        this.projectsInstructions.label.geometry = new THREE.PlaneGeometry(6, 3, 1, 1);
-
-        this.projectsInstructions.label.texture = this.resources.items.introProjectsTexture;
-        this.projectsInstructions.label.texture.magFilter = THREE.NearestFilter;
-        this.projectsInstructions.label.texture.minFilter = THREE.LinearFilter;
-
-        this.projectsInstructions.label.material = new THREE.MeshBasicMaterial({
-            transparent: true,
-            alphaMap: this.projectsInstructions.label.texture,
-            color: 0xffffff,
-            depthWrite: false,
-            opacity: 1
-        });
-
-        this.projectsInstructions.label.mesh = new THREE.Mesh(this.projectsInstructions.label.geometry, this.projectsInstructions.label.material);
-        this.projectsInstructions.label.mesh.matrixAutoUpdate = false;
-        this.projectsInstructions.container.add(this.projectsInstructions.label.mesh);
     }
 
     setOtherInstructions()
@@ -265,25 +240,6 @@ export default class IntroSection
             soundName: 'brick'
         }
 
-         this.walls.add({
-             object:
-             {
-                 ...this.dikes.brickOptions,
-                 rotation: new THREE.Euler(0, 0, Math.PI * 0.5)
-             },
-             shape:
-             {
-                 type: 'brick',
-                 equilibrateLastLine: true,
-                 widthCount: 3,
-                 heightCount: 2,
-                 position: new THREE.Vector3(this.x + 0, this.y - 4, 0),
-                 offsetWidth: new THREE.Vector3(1.05, 0, 0),
-                 offsetHeight: new THREE.Vector3(0, 0, 0.45),
-                 randomOffset: new THREE.Vector3(0, 0, 0),
-                 randomRotation: new THREE.Vector3(0, 0, 0.2)
-             }
-         })
 
         this.walls.add({
             object: this.dikes.brickOptions,
