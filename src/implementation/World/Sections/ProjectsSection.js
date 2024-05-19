@@ -76,6 +76,16 @@ export default class ProjectsSection
                 floorTexture: this.resources.items.projectsToolsFloorTexture,
             },
             {
+                name: 'Rooms/',
+                imageSources:
+                    [
+                        './models/projects/rooms/slideA.png',
+                        './models/projects/rooms/slideB.png',
+                        './models/projects/rooms/slideC.png'
+                    ],
+                floorTexture: this.resources.items.projectsRoomsFloorTexture,
+            },
+            {
                 name: 'Talent/',
                 imageSources:
                     [
