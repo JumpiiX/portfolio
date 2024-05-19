@@ -43,7 +43,7 @@ export default class IntroSection
                 base: this.resources.items.crossroadsStaticBase.scene,
                 collision: this.resources.items.crossroadsStaticCollision.scene,
                 floorShadowTexture: this.resources.items.crossroadsStaticFloorShadowTexture,
-                offset: new THREE.Vector3(3, -15, 0),
+                offset: new THREE.Vector3(5, -15, 0),
                 mass: 0
             })
 
