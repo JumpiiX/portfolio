@@ -33,7 +33,6 @@ export default class Resources extends EventEmitter
             { name: 'introStaticCollision', source: './models/intro/static/collision.glb' },
             { name: 'introStaticFloorShadow', source: './models/intro/static/floorShadow.png', type: 'texture' },
             { name: 'introName', source: './models/intro/name.png', type: 'texture' },
-            { name: 'introProjects', source: './models/intro/projects.png', type: 'texture' },
 
             { name: 'introInstructionsLabels', source: './models/intro/instructions/labels.glb' },
             { name: 'introInstructionsArrows', source: './models/intro/instructions/arrows.png', type: 'texture' },
