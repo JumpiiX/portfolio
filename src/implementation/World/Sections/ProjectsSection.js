@@ -88,16 +88,6 @@ export default class ProjectsSection
                     }
             },
             {
-                name: 'Tools/',
-                imageSources:
-                    [
-                        './models/projects/tools/slideA.png',
-                        './models/projects/tools/slideB.png',
-                        './models/projects/tools/slideC.png'
-                    ],
-                floorTexture: this.resources.items.projectsToolsFloorTexture,
-            },
-            {
                 name: 'Rooms/',
                 imageSources:
                     [
@@ -106,6 +96,16 @@ export default class ProjectsSection
                         './models/projects/rooms/slideC.png'
                     ],
                 floorTexture: this.resources.items.projectsRoomsFloorTexture,
+            },
+            {
+                name: 'Tools/',
+                imageSources:
+                    [
+                        './models/projects/tools/slideA.png',
+                        './models/projects/tools/slideB.png',
+                        './models/projects/tools/slideC.png'
+                    ],
+                floorTexture: this.resources.items.projectsToolsFloorTexture,
             },
             {
                 name: 'Talent/',
