@@ -106,6 +106,7 @@ export default class Resources extends EventEmitter
             { name: 'projectsToolsFloor', source: './models/projects/tools/floorTexture.webp', type: 'texture' },
             { name: 'projectsTalentFloor', source: './models/projects/talent/floorTexture.png', type: 'texture' },
             { name: 'projectsRoomsFloor', source: './models/projects/rooms/floorTexture.png', type: 'texture' },
+            { name: 'projectsMarktplatzFloor', source: './models/projects/marktplatz/floorTexture.png', type: 'texture' },
             { name: 'crossroadsStaticBase', source: './models/intro/crossroad/base.glb' },
             { name: 'crossroadsStaticCollision', source: './models/intro/crossroad/collision.glb' },
             { name: 'informationStaticBase', source: './models/information/static/base.glb' },

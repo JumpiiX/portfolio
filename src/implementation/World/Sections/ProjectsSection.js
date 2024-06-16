@@ -66,6 +66,28 @@ export default class ProjectsSection
     {
         this.list = [
             {
+                name: 'Marktplatz',
+                imageSources:
+                    [
+                        './models/projects/marktplatz/slideA.png',
+                        './models/projects/marktplatz/slideB.png',
+                        './models/projects/marktplatz/slideC.png',
+                        './models/projects/marktplatz/slideD.png'
+                    ],
+                floorTexture: this.resources.items.projectsMarktplatzFloorTexture,
+                link:
+                    {
+                        href: 'https://bildungsmarktplatz.ch/',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
                 name: 'Tools/',
                 imageSources:
                     [

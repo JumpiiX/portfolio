@@ -20,8 +20,7 @@ export default class Project
         this.y = _options.y
         this.imageSources = _options.imageSources
         this.floorTexture = _options.floorTexture
-        this.link = _options.link
-        this.distinctions = _options.distinctions
+        this.link = _options.link || null;
 
         this.container = new THREE.Object3D()
         this.container.matrixAutoUpdate = false
@@ -96,30 +95,47 @@ export default class Project
         }
     }
 
-    setFloor()
-    {
-        this.floor = {}
+    setFloor() {
+        this.floor = {};
 
-        this.floor.x = 0
-        this.floor.y = - 2
+        this.floor.x = 0;
+        this.floor.y = -2;
 
-        this.floor.container = new THREE.Object3D()
-        this.floor.container.position.x = this.x + this.floor.x
-        this.floor.container.position.y = this.y + this.floor.y
-        this.floor.container.matrixAutoUpdate = false
-        this.floor.container.updateMatrix()
-        this.container.add(this.floor.container)
+        this.floor.container = new THREE.Object3D();
+        this.floor.container.position.x = this.x + this.floor.x;
+        this.floor.container.position.y = this.y + this.floor.y;
+        this.floor.container.matrixAutoUpdate = false;
+        this.floor.container.updateMatrix();
+        this.container.add(this.floor.container);
 
-        this.floor.texture = this.floorTexture
-        this.floor.texture.magFilter = THREE.NearestFilter
-        this.floor.texture.minFilter = THREE.LinearFilter
+        this.floor.texture = this.floorTexture;
+        this.floor.texture.magFilter = THREE.NearestFilter;
+        this.floor.texture.minFilter = THREE.LinearFilter;
 
-        this.floor.geometry = this.geometries.floor
+        this.floor.geometry = this.geometries.floor;
 
         this.floor.material =  new THREE.MeshBasicMaterial({ transparent: true, depthWrite: false, map: this.floor.texture, alphaMap: this.floor.texture })
 
-        this.floor.mesh = new THREE.Mesh(this.floor.geometry, this.floor.material)
-        this.floor.mesh.matrixAutoUpdate = false
-        this.floor.container.add(this.floor.mesh)
+        this.floor.mesh = new THREE.Mesh(this.floor.geometry, this.floor.material);
+        this.floor.mesh.matrixAutoUpdate = false;
+        this.floor.container.add(this.floor.mesh);
+
+        if (this.link) {
+            this.floor.area = this.areas.add({
+                position: new THREE.Vector2(this.x + this.link.x, this.y + this.floor.y + this.link.y),
+                halfExtents: new THREE.Vector2(this.link.halfExtents.x, this.link.halfExtents.y)
+            });
+            this.floor.area.on('interact', () => {
+                window.open(this.link.href, '_blank');
+            });
+
+            this.floor.areaLabel = this.meshes.areaLabel.clone();
+            this.floor.areaLabel.position.x = this.link.x;
+            this.floor.areaLabel.position.y = this.link.y;
+            this.floor.areaLabel.position.z = 0.001;
+            this.floor.areaLabel.matrixAutoUpdate = false;
+            this.floor.areaLabel.updateMatrix();
+            this.floor.container.add(this.floor.areaLabel);
+        }
     }
 }
