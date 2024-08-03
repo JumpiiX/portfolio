@@ -59,7 +59,8 @@ export default class Resources extends EventEmitter
             { name: 'informationContactLinkedinLabel', source: './models/information/static/contactLinkedinLabel.png', type: 'texture' },
             { name: 'informationContactMailLabel', source: './models/information/static/contactMailLabel.png', type: 'texture' },
 
-            { name: 'informationActivities', source: './models/information/static/activities.png', type: 'texture' },
+            { name: 'informationEducation', source: './models/information/static/education.png', type: 'texture' },
+            { name: 'informationWorkExperience', source: './models/information/static/workExperience.png', type: 'texture' },
 
             { name: 'brickBase', source: './models/brick/base.glb' },
             { name: 'brickCollision', source: './models/brick/collision.glb' },

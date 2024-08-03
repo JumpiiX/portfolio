@@ -20,14 +20,11 @@ export default class InformationSection
 
 
         this.setLinks()
-        this.setActivities()
+        this.setEducation()
+        this.setWorkExperience()
         this.setTiles()
         this.setStatic()
     }
-
-
-
-
 
     setLinks()
     {
@@ -111,28 +108,53 @@ export default class InformationSection
             mass: 0
         })
     }
-    setActivities()
+
+    setEducation()
     {
 
-        this.activities = {}
-        this.activities.x = this.x + 0
-        this.activities.y = this.y - 10
-        this.activities.multiplier = 5.5
+        this.education = {}
+        this.education.x = this.x - 5
+        this.education.y = this.y - 10
+        this.education.multiplier = 7
 
-        this.activities.geometry = new THREE.PlaneGeometry(2 * this.activities.multiplier, 1 * this.activities.multiplier, 1, 1)
+        this.education.geometry = new THREE.PlaneGeometry(2 * this.education.multiplier, 1 * this.education.multiplier, 1, 1)
 
-        this.activities.texture = this.resources.items.informationActivitiesTexture
-        this.activities.texture.magFilter = THREE.NearestFilter
-        this.activities.texture.minFilter = THREE.LinearFilter
+        this.education.texture = this.resources.items.informationEducationTexture
+        this.education.texture.magFilter = THREE.NearestFilter
+        this.education.texture.minFilter = THREE.LinearFilter
 
-        this.activities.material = new THREE.MeshBasicMaterial({ wireframe: false, color: 0xffffff, alphaMap: this.activities.texture, transparent: true })
+        this.education.material = new THREE.MeshBasicMaterial({ wireframe: false, map: this.education.texture, alphaMap: this.education.texture, transparent: true })
 
-        this.activities.mesh = new THREE.Mesh(this.activities.geometry, this.activities.material)
-        this.activities.mesh.position.x = this.activities.x
-        this.activities.mesh.position.y = this.activities.y
-        this.activities.mesh.matrixAutoUpdate = false
-        this.activities.mesh.updateMatrix()
-        this.container.add(this.activities.mesh)
+        this.education.mesh = new THREE.Mesh(this.education.geometry, this.education.material)
+        this.education.mesh.position.x = this.education.x
+        this.education.mesh.position.y = this.education.y
+        this.education.mesh.matrixAutoUpdate = false
+        this.education.mesh.updateMatrix()
+        this.container.add(this.education.mesh)
+    }
+
+    setWorkExperience()
+    {
+
+        this.workExperience = {}
+        this.workExperience.x = this.x + 5
+        this.workExperience.y = this.y - 10
+        this.workExperience.multiplier = 7
+
+        this.workExperience.geometry = new THREE.PlaneGeometry(2 * this.workExperience.multiplier, 1 * this.workExperience.multiplier, 1, 1)
+
+        this.workExperience.texture = this.resources.items.informationWorkExperienceTexture
+        this.workExperience.texture.magFilter = THREE.NearestFilter
+        this.workExperience.texture.minFilter = THREE.LinearFilter
+
+        this.workExperience.material = new THREE.MeshBasicMaterial({ wireframe: false,  map: this.workExperience.texture, alphaMap: this.workExperience.texture, transparent: true })
+
+        this.workExperience.mesh = new THREE.Mesh(this.workExperience.geometry, this.workExperience.material)
+        this.workExperience.mesh.position.x = this.workExperience.x
+        this.workExperience.mesh.position.y = this.workExperience.y
+        this.workExperience.mesh.matrixAutoUpdate = false
+        this.workExperience.mesh.updateMatrix()
+        this.container.add(this.workExperience.mesh)
     }
 
     setTiles()
