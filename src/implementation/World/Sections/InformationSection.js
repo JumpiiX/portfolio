@@ -113,7 +113,7 @@ export default class InformationSection
     {
 
         this.education = {}
-        this.education.x = this.x - 5
+        this.education.x = this.x - 10
         this.education.y = this.y - 10
         this.education.multiplier = 7
 
