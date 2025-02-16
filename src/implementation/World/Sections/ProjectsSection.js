@@ -66,6 +66,27 @@ export default class ProjectsSection
     {
         this.list = [
             {
+                name: 'Penumbra Indexer',
+                imageSources:
+                    [
+                        './models/projects/penumbra/slideA.png',
+                        './models/projects/penumbra/slideB.png',
+                        './models/projects/penumbra/slideC.png'
+                    ],
+                floorTexture: this.resources.items.projectsPenumbraFloorTexture,
+                link:
+                    {
+                        href: 'https://github.com/JumpiiX/penumbra-indexer',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
                 name: 'Marktplatz',
                 imageSources:
                     [
