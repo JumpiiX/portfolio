@@ -71,12 +71,13 @@ export default class ProjectsSection
                     [
                         './models/projects/penumbra/slideA.png',
                         './models/projects/penumbra/slideB.png',
-                        './models/projects/penumbra/slideC.png'
+                        './models/projects/penumbra/slideC.png',
+                        './models/projects/penumbra/slideD.png'
                     ],
                 floorTexture: this.resources.items.projectsPenumbraFloorTexture,
                 link:
                     {
-                        href: 'https://github.com/JumpiiX/penumbra-indexer',
+                        href: 'https://explorer.penumbra.zone/',
                         x: - 4.8,
                         y: - 6,
                         halfExtents:
