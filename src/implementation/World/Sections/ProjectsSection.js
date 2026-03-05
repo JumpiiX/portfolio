@@ -66,6 +66,71 @@ export default class ProjectsSection
     {
         this.list = [
             {
+                name: 'Sigma',
+                imageSources:
+                    [
+                        './models/projects/sigma/slideA.png',
+                        './models/projects/sigma/slideB.png',
+                        './models/projects/sigma/slideC.png',
+                        './models/projects/sigma/slideD.png'
+                    ],
+                floorTexture: this.resources.items.projectsSigmaFloorTexture,
+                link:
+                    {
+                        href: 'https://sigma.ac/',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
+                name: 'Davlo',
+                imageSources:
+                    [
+                        './models/projects/davloio/slideA.png',
+                        './models/projects/davloio/slideB.png',
+                        './models/projects/davloio/slideC.png'
+                    ],
+                floorTexture: this.resources.items.projectsDavloioFloorTexture,
+                link:
+                    {
+                        href: 'https://davlo.io/',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
+                name: 'Intuition',
+                imageSources:
+                    [
+                        './models/projects/intuition/slideA.png',
+                        './models/projects/intuition/slideB.png',
+                        './models/projects/intuition/slideC.png',
+                        './models/projects/intuition/slideD.png'
+                    ],
+                floorTexture: this.resources.items.projectsIntuitionFloorTexture,
+                link:
+                    {
+                        href: 'https://intuition.davlo.io/',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
                 name: 'Penumbra Indexer',
                 imageSources:
                     [
