@@ -6,6 +6,7 @@ import Physics from './Physics.js'
 import Zones from './Zones.js'
 import Objects from './Objects.js'
 import Car from './Car.js'
+import ParkedCar from './ParkedCar.js'
 import Areas from './Areas.js'
 import Tiles from './Tiles.js'
 import Walls from './Walls.js'
@@ -62,6 +63,7 @@ export default class World
         this.setObjects()
         this.setCar()
         this.areas.car = this.car
+        this.setParkedCars()
         this.setTiles()
         this.setWalls()
         this.setSections()
@@ -366,6 +368,30 @@ export default class World
             config: this.config
         })
         this.container.add(this.car.container)
+    }
+
+    setParkedCars()
+    {
+        this.parkedCars = []
+
+        const placements = [
+            { position: new THREE.Vector3(- 8, - 6, 0), rotation: Math.PI * 0.5 },
+            { position: new THREE.Vector3(  8, - 6, 0), rotation: - Math.PI * 0.5 }
+        ]
+
+        for(const _placement of placements)
+        {
+            const parkedCar = new ParkedCar({
+                resources: this.resources,
+                objects: this.objects,
+                physics: this.physics,
+                shadows: this.shadows,
+                position: _placement.position,
+                rotation: _placement.rotation
+            })
+            this.container.add(parkedCar.container)
+            this.parkedCars.push(parkedCar)
+        }
     }
 
     setSections()
