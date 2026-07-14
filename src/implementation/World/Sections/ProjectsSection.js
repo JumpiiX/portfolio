@@ -66,6 +66,27 @@ export default class ProjectsSection
     {
         this.list = [
             {
+                name: 'Rsgo',
+                imageSources:
+                    [
+                        './models/projects/rsgo/slideA.png',
+                        './models/projects/rsgo/slideB.png',
+                        './models/projects/rsgo/slideC.png'
+                    ],
+                floorTexture: this.resources.items.projectsRsgoFloorTexture,
+                link:
+                    {
+                        href: 'https://rsgo.io/',
+                        x: - 4.8,
+                        y: - 6,
+                        halfExtents:
+                            {
+                                x: 3.2,
+                                y: 1.5
+                            }
+                    }
+            },
+            {
                 name: 'Sigma',
                 imageSources:
                     [
