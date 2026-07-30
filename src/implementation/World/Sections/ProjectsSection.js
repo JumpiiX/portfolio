@@ -163,7 +163,7 @@ export default class ProjectsSection
                 floorTexture: this.resources.items.projectsPenumbraFloorTexture,
                 link:
                     {
-                        href: 'https://explorer.penumbra.zone/',
+                        href: 'https://penumbra.davlo.io/',
                         x: - 4.8,
                         y: - 6,
                         halfExtents:
